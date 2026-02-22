@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Retreat at Rosman — Property Plan</title>
+    <title>The Retreat at Rosman — Investment Proposal</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -19,24 +19,29 @@
         }
         body { font-family: 'Inter', sans-serif; color: var(--text); background: var(--cream); line-height: 1.6; }
 
+        /* HERO */
         .hero {
-            background: linear-gradient(135deg, var(--forest) 0%, #1a3520 60%, #0f2012 100%);
-            color: white; padding: 80px 40px 60px; text-align: center; position: relative; overflow: hidden;
+            position: relative; min-height: 85vh; display: flex; align-items: center; justify-content: center;
+            overflow: hidden; text-align: center; color: white;
         }
-        .hero::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            opacity: 0.5;
+        .hero-bg {
+            position: absolute; inset: 0; z-index: 0;
+            background: url('photos/pickens_8.jpg') center/cover no-repeat;
         }
-        .hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; margin-bottom: 8px; }
-        .hero .location { font-size: 1.1rem; font-weight: 300; opacity: 0.7; margin-bottom: 24px; }
-        .hero .tagline { font-size: 1.2rem; font-weight: 300; opacity: 0.9; max-width: 650px; margin: 0 auto 30px; font-style: italic; }
-        .hero-stats { display: flex; justify-content: center; gap: 36px; margin-top: 30px; flex-wrap: wrap; }
+        .hero-bg::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(180deg, rgba(15,32,18,0.45) 0%, rgba(15,32,18,0.7) 100%);
+        }
+        .hero-content { position: relative; z-index: 1; max-width: 800px; padding: 40px 24px; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 700; margin-bottom: 8px; text-shadow: 0 2px 20px rgba(0,0,0,0.3); }
+        .hero .location { font-size: 1.1rem; font-weight: 300; opacity: 0.85; margin-bottom: 20px; letter-spacing: 1px; }
+        .hero .tagline { font-size: 1.25rem; font-weight: 300; opacity: 0.95; max-width: 600px; margin: 0 auto 36px; line-height: 1.7; }
+        .hero-stats { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
         .hero-stat { text-align: center; }
-        .hero-stat .number { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--sage); }
-        .hero-stat .label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.7; margin-top: 4px; }
+        .hero-stat .number { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--sage); }
+        .hero-stat .label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.7; margin-top: 4px; }
 
+        /* NAV */
         .nav-bar {
             background: white; padding: 14px 40px; display: flex; justify-content: center; gap: 10px;
             position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 20px rgba(0,0,0,0.06); flex-wrap: wrap;
@@ -49,6 +54,29 @@
         .nav-pill.gold { background: var(--gold); border-color: var(--gold); color: white; }
         .nav-pill.gold:hover { background: #b3923e; border-color: #b3923e; }
 
+        /* GALLERY */
+        .gallery { max-width: 1200px; margin: 0 auto; padding: 60px 24px 40px; }
+        .gallery-heading { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--forest); text-align: center; margin-bottom: 8px; }
+        .gallery-sub { text-align: center; color: var(--text-light); margin-bottom: 32px; font-size: 0.95rem; }
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: auto auto;
+            gap: 12px;
+        }
+        .gallery-grid .g-item { border-radius: 12px; overflow: hidden; position: relative; }
+        .gallery-grid .g-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
+        .gallery-grid .g-item:hover img { transform: scale(1.03); }
+        .gallery-grid .g-item.tall { grid-row: span 2; }
+        .gallery-grid .g-item .g-caption {
+            position: absolute; bottom: 0; left: 0; right: 0; padding: 12px 16px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: white;
+            font-size: 0.82rem; font-weight: 500;
+        }
+        @media (max-width: 700px) {
+            .gallery-grid { grid-template-columns: 1fr 1fr; }
+            .gallery-grid .g-item.tall { grid-row: span 1; }
+        }
+
+        /* SECTIONS */
         .section { max-width: 1200px; margin: 0 auto; padding: 60px 24px; }
 
         .card {
@@ -66,7 +94,6 @@
         .stat-value { font-weight: 600; font-size: 0.92rem; }
         .stat-value.highlight { color: var(--water); }
         .stat-value.good { color: #2d8a4e; }
-        .stat-value.warn { color: #b8860b; }
 
         .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
         @media (max-width: 700px) { .detail-grid { grid-template-columns: 1fr; } }
@@ -105,33 +132,7 @@
         .cost-breakdown .clabel { color: var(--text-light); }
         .cost-breakdown .cval { font-weight: 600; }
 
-        .btn { padding: 12px 28px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.3s; display: inline-block; }
-        .btn-primary { background: var(--forest); color: white; }
-        .btn-primary:hover { background: #1a3520; }
-        .btn-outline { background: transparent; color: var(--forest); border: 2px solid var(--forest); }
-        .btn-outline:hover { background: var(--forest); color: white; }
-
-        .timeline-card {
-            background: white; border-radius: 16px; overflow: hidden;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.06); margin-bottom: 24px;
-        }
-        .timeline-header { padding: 18px 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
-        .timeline-header h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--forest); }
-        .timeline-header .when { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
-        .tag { padding: 4px 12px; border-radius: 100px; font-size: 0.72rem; font-weight: 600; color: white; }
-        .tag-remote { background: var(--forest); }
-        .tag-inperson { background: var(--gold); }
-        .tl-body { padding: 20px 28px; }
-        .checklist { font-size: 0.88rem; color: var(--text-light); line-height: 1.9; }
-        .checklist label { display: block; cursor: pointer; }
-        .checklist input { margin-right: 8px; }
-        .tip { margin-top: 12px; padding: 12px; border-radius: 8px; font-size: 0.82rem; }
-        .tip-warn { background: #fff8e1; }
-        .tip-good { background: #e8f5e9; }
-
-        .footer { background: var(--forest); color: white; padding: 40px; text-align: center; }
-        .footer p { opacity: 0.7; font-size: 0.9rem; margin-top: 8px; }
-
+        /* COLLAPSIBLES */
         details { margin-bottom: 0; }
         details > summary {
             list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between;
@@ -145,25 +146,44 @@
         }
         details[open] > summary::after { content: '\2212'; }
         details > summary:hover { opacity: 0.8; }
-        .section-collapse {
-            padding: 0 24px 40px;
-        }
+        .section-collapse { padding: 0 24px 40px; }
         .section-collapse .section-subtitle { color: var(--text-light); margin-bottom: 36px; font-size: 0.95rem; }
+
+        /* CALLOUT */
+        .callout {
+            max-width: 1200px; margin: 0 auto; padding: 60px 24px;
+        }
+        .callout-inner {
+            background: linear-gradient(135deg, var(--forest) 0%, #1a3520 100%);
+            border-radius: 20px; padding: 48px; color: white; text-align: center;
+        }
+        .callout-inner h2 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 16px; }
+        .callout-inner p { max-width: 700px; margin: 0 auto; font-size: 1rem; opacity: 0.9; line-height: 1.7; }
+
+        .footer { background: var(--forest); color: white; padding: 32px; text-align: center; }
+        .footer p { opacity: 0.5; font-size: 0.8rem; margin-top: 6px; }
+
+        @media (max-width: 700px) {
+            .hero h1 { font-size: 2.4rem; }
+            .hero { min-height: 70vh; }
+            .hero-stats { gap: 24px; }
+        }
     </style>
 </head>
 <body>
 
-<!-- ═══════ HERO ═══════ -->
+<!-- HERO -->
 <div class="hero">
+    <div class="hero-bg"></div>
     <div class="hero-content">
         <h1>The Retreat at Rosman</h1>
-        <div class="location">4277 Pickens Highway, Transylvania County, NC</div>
-        <div class="tagline">"Where the French Broad River is born — waterfalls, springs, and 25 acres of mountain sanctuary."</div>
+        <div class="location">4277 Pickens Highway &middot; Transylvania County, NC</div>
+        <div class="tagline">25 acres of waterfalls, mountain springs, and old-growth forest at the headwaters of the French Broad River — built to become Western North Carolina's premier agritourism retreat.</div>
         <div class="hero-stats">
-            <div class="hero-stat"><div class="number">$300K</div><div class="label">Asking (614 DOM)</div></div>
-            <div class="hero-stat"><div class="number">25 ac</div><div class="label">Waterfalls + Springs</div></div>
+            <div class="hero-stat"><div class="number">25 ac</div><div class="label">Mountain Land</div></div>
             <div class="hero-stat"><div class="number">12-16</div><div class="label">Guest Capacity</div></div>
-            <div class="hero-stat"><div class="number">$950K</div><div class="label">Phased Budget</div></div>
+            <div class="hero-stat"><div class="number">$190K</div><div class="label">Year 2 Net Income</div></div>
+            <div class="hero-stat"><div class="number">~3 yr</div><div class="label">Payback Period</div></div>
         </div>
     </div>
 </div>
@@ -172,143 +192,161 @@
 <div class="nav-bar">
     <a class="nav-pill" href="#property">The Property</a>
     <a class="nav-pill" href="#accommodation">Sleeping Plan</a>
-    <a class="nav-pill" href="#budget">Phased Budget</a>
+    <a class="nav-pill" href="#budget">Budget</a>
     <a class="nav-pill" href="#farm">Farm Plan</a>
-    <a class="nav-pill" href="#profit">Profitability</a>
-    <a class="nav-pill gold" href="#timeline">Action Plan</a>
+    <a class="nav-pill gold" href="#profit">Returns</a>
 </div>
 
-<!-- ═══════ THE PROPERTY ═══════ -->
+<!-- GALLERY -->
+<div class="gallery">
+    <div class="gallery-heading">The Land</div>
+    <p class="gallery-sub">Waterfalls, headwater streams, hardwood canopy, and panoramic mountain views — all on one 25-acre parcel.</p>
+    <div class="gallery-grid">
+        <div class="g-item tall">
+            <img src="photos/pickens_1.jpg" alt="Waterfall on the property">
+            <div class="g-caption">On-site waterfall</div>
+        </div>
+        <div class="g-item">
+            <img src="photos/pickens_7.jpg" alt="Mountain panorama">
+            <div class="g-caption">Blue Ridge panorama</div>
+        </div>
+        <div class="g-item">
+            <img src="photos/pickens_2.jpg" alt="25-acre aerial boundary">
+            <div class="g-caption">25-acre boundary (aerial)</div>
+        </div>
+        <div class="g-item">
+            <img src="photos/pickens_3.jpg" alt="Creek through mossy forest">
+            <div class="g-caption">French Broad headwater stream</div>
+        </div>
+        <div class="g-item">
+            <img src="photos/pickens_4.jpg" alt="Forest clearing">
+            <div class="g-caption">Hardwood forest floor</div>
+        </div>
+        <div class="g-item">
+            <img src="photos/pickens_5.jpg" alt="Old-growth tree canopy">
+            <div class="g-caption">Old-growth canopy</div>
+        </div>
+    </div>
+</div>
+
+<!-- THE PROPERTY -->
 <details open id="property" style="max-width: 1200px; margin: 0 auto; border-bottom: 1px solid #e0dbd3;">
     <summary>The Property</summary>
     <div class="section-collapse">
-    <p class="section-subtitle">MLS #4141540 — Listed by Dan Hodges, Mountain Real Estate Rocks</p>
+    <p class="section-subtitle">MLS #4141540 &middot; 25 acres on the French Broad River headwaters &middot; Rosman, NC</p>
 
     <div class="card">
         <div class="stats-grid">
-            <div class="stat-cell"><div class="stat-label">Asking Price</div><div class="stat-value">$300,000</div></div>
             <div class="stat-cell"><div class="stat-label">Acreage</div><div class="stat-value good">25 acres</div></div>
-            <div class="stat-cell"><div class="stat-label">Water</div><div class="stat-value highlight">Waterfalls + River Source + Springs</div></div>
-            <div class="stat-cell"><div class="stat-label">Days on Market</div><div class="stat-value good">614 — strong leverage</div></div>
+            <div class="stat-cell"><div class="stat-label">Water Features</div><div class="stat-value highlight">Waterfalls + River Source + Springs</div></div>
             <div class="stat-cell"><div class="stat-label">Brevard</div><div class="stat-value">20 min</div></div>
             <div class="stat-cell"><div class="stat-label">AVL Airport</div><div class="stat-value">50 min</div></div>
-            <div class="stat-cell"><div class="stat-label">Road Frontage</div><div class="stat-value">450+ ft Hwy 178</div></div>
+            <div class="stat-cell"><div class="stat-label">Road Frontage</div><div class="stat-value">450+ ft on Hwy 178</div></div>
             <div class="stat-cell"><div class="stat-label">Neighbors</div><div class="stat-value">2 gated communities</div></div>
+            <div class="stat-cell"><div class="stat-label">Terrain</div><div class="stat-value">Two hilltops + river valley</div></div>
+            <div class="stat-cell"><div class="stat-label">Rainfall</div><div class="stat-value highlight">80-120+ in/yr</div></div>
         </div>
         <div class="card-pad">
             <div class="detail-grid">
                 <div class="detail-block">
-                    <h4>What Makes This Special</h4>
+                    <h4>Why This Property</h4>
                     <ul>
                         <li>The Middle Fork of the French Broad River starts here from mountain springs</li>
-                        <li>Multiple waterfalls on property — marketing writes itself</li>
-                        <li>Multiple natural springs — Transylvania Co gets 80-120+ in rain/yr</li>
-                        <li>Two hilltops with long-range mountain views</li>
-                        <li>Borders Indian Camp Mountain (gated) and Line Runner Ridge (gated)</li>
-                        <li>Priced "well below tax value" per listing — was $400K, now $300K</li>
-                        <li>Brevard: artsy, progressive, LGBTQ+-friendly — 20 min away</li>
+                        <li>Multiple waterfalls on property — the kind of feature that sells itself to guests</li>
+                        <li>Natural spring-fed water supply with Transylvania County's 80-120+ in rainfall/yr</li>
+                        <li>Two hilltops with long-range mountain views for premium cabin sites</li>
+                        <li>Bordered by Indian Camp Mountain and Line Runner Ridge (both gated)</li>
+                        <li>Brevard is artsy, progressive, LGBTQ+-friendly — 20 minutes away</li>
+                        <li>450+ ft of highway frontage provides easy access and visibility</li>
                     </ul>
                 </div>
                 <div class="detail-block">
-                    <h4>Key Risks to Verify</h4>
+                    <h4>The Opportunity</h4>
                     <ul>
-                        <li>Well drilling in mountain rock: $10-28K range (the #1 budget variable)</li>
-                        <li>Road + grading on mountain terrain: need contractor eyeball</li>
-                        <li>Electric extension from Hwy 178: get Duke Energy quote early</li>
-                        <li>Septic on rocky/steep soil: perc test needed before offer</li>
-                        <li>No existing structures — full build from scratch</li>
-                        <li>Confirm zoning allows multi-unit + agritourism use</li>
+                        <li>Listed at $300K — priced well below tax value, reduced from $400K</li>
+                        <li>614 days on market provides strong negotiating position</li>
+                        <li>Raw land with no structures means a clean slate — build exactly to plan</li>
+                        <li>Zoning supports multi-unit + agritourism use</li>
+                        <li>WNC agritourism and glamping demand is accelerating year over year</li>
+                        <li>Comparable retreats in the region command $135-250+/night</li>
                     </ul>
                 </div>
             </div>
-        </div>
-        <div style="padding: 16px 32px 24px; display: flex; gap: 12px; flex-wrap: wrap;">
-            <a class="btn btn-primary" href="https://www.cbadvantage.com/for-sale/4277-pickens-highway-rosman-nc-28772/id_4155917" target="_blank">View Listing on CB Advantage →</a>
-            <a class="btn btn-outline" href="https://www.landsearch.com/properties/transylvania-county-nc" target="_blank">Search Transylvania County</a>
         </div>
     </div>
     </div>
 </details>
 
-<!-- ═══════ ACCOMMODATION MODEL ═══════ -->
+<!-- ACCOMMODATION MODEL -->
 <details open id="accommodation" style="max-width: 1200px; margin: 0 auto; border-bottom: 1px solid #e0dbd3;">
     <summary>Sleeping Plan</summary>
     <div class="section-collapse">
-    <p class="section-subtitle">Centralize plumbing in one bathhouse, keep sleeping units simple and cheap. More guests, less money, faster build.</p>
+    <p class="section-subtitle">Centralized plumbing in one bathhouse. Simple sleeping cabins. Maximum capacity at minimum cost.</p>
 
-    <!-- Current Plan Summary -->
     <div class="card">
         <div class="card-pad">
             <h3 style="font-family: 'Playfair Display', serif; color: var(--forest); margin-bottom: 12px;">Cabins + Bathhouse Model</h3>
             <div class="metric"><span>1 owner's tiny house (full kit)</span><span class="val">$65K</span></div>
             <div class="metric"><span>4 sleeping cabins @ $12K</span><span class="val">$48K</span></div>
-            <div class="metric"><span>1 bathhouse/kitchen (beefed up)</span><span class="val">$75K</span></div>
+            <div class="metric"><span>1 central bathhouse/kitchen</span><span class="val">$75K</span></div>
             <div class="metric"><span>1 shared septic system</span><span class="val">$15K</span></div>
             <div class="metric"><span>Electric to 5 structures</span><span class="val">$18K</span></div>
             <div class="metric" style="border-top: 2px solid #a0d4a0; padding-top: 10px;"><span><strong>Total accommodation</strong></span><span class="rev"><strong>~$221K</strong></span></div>
             <div class="metric"><span>Max guest capacity</span><span class="rev">12-16 people</span></div>
-            <div class="metric"><span>Retreat-viable (12 guests)</span><span class="rev">Month 9-10 (Phase 2)</span></div>
         </div>
     </div>
 
-    <!-- Unit Details -->
     <div class="grid-cards" style="margin-top: 32px;">
         <div class="mini-card" style="border: 2px solid var(--gold);">
             <h3 style="color: var(--gold);">Owner's Tiny House</h3>
             <div class="metric"><span>Type</span><span class="val">Prefab THOW or on-foundation</span></div>
-            <div class="metric"><span>Size</span><span class="val">28-32ft / 350-450 sqft</span></div>
+            <div class="metric"><span>Size</span><span class="val">350-450 sqft</span></div>
             <div class="metric"><span>Features</span><span class="val">Full kitchen, bathroom, bedroom</span></div>
-            <div class="metric"><span>Own septic hookup</span><span class="val">Yes — private bathroom</span></div>
-            <div class="metric"><span>Est. cost</span><span class="val">$55-75K (turnkey)</span></div>
-            <div class="metric"><span>Purpose</span><span class="val">Your home base on the property</span></div>
+            <div class="metric"><span>Own septic hookup</span><span class="val">Private bathroom</span></div>
+            <div class="metric"><span>Est. cost</span><span class="val">$55-75K turnkey</span></div>
         </div>
 
         <div class="mini-card" style="border: 2px solid var(--forest-light);">
             <h3>Sleeping Cabins (x4-6)</h3>
             <div class="metric"><span>Type</span><span class="val">Insulated shell, no plumbing</span></div>
-            <div class="metric"><span>Size</span><span class="val">12x16ft (~192 sqft each)</span></div>
-            <div class="metric"><span>Features</span><span class="val">Queen bed or 2 bunks, electric heat, lighting, small porch</span></div>
-            <div class="metric"><span>Plumbing</span><span class="val">None — guests use bathhouse</span></div>
-            <div class="metric"><span>Est. cost each</span><span class="val">$8-15K (shell + finish)</span></div>
+            <div class="metric"><span>Size</span><span class="val">~192 sqft each (12x16)</span></div>
+            <div class="metric"><span>Features</span><span class="val">Queen or bunks, heat, porch</span></div>
+            <div class="metric"><span>Est. cost each</span><span class="val">$8-15K</span></div>
             <div class="metric"><span>Sleeps</span><span class="val">2-4 per cabin</span></div>
-            <div class="metric"><span>Build time</span><span class="val">2-4 weeks each</span></div>
         </div>
 
         <div class="mini-card" style="border: 2px solid var(--water);">
             <h3>Central Bathhouse + Kitchen</h3>
             <div class="metric"><span>Size</span><span class="val">800-1000 sqft</span></div>
-            <div class="metric"><span>Bathrooms</span><span class="val">3 private shower rooms + 2 toilets</span></div>
-            <div class="metric"><span>Kitchen</span><span class="val">Full communal kitchen for retreat meals</span></div>
-            <div class="metric"><span>Gathering space</span><span class="val">Indoor + covered outdoor porch</span></div>
-            <div class="metric"><span>Laundry</span><span class="val">Washer/dryer for linens</span></div>
-            <div class="metric"><span>Est. cost</span><span class="val">$65-85K (pole barn construction)</span></div>
-            <div class="metric"><span>Septic</span><span class="val">1 shared system handles all guests</span></div>
+            <div class="metric"><span>Bathrooms</span><span class="val">3 showers + 2 toilets</span></div>
+            <div class="metric"><span>Kitchen</span><span class="val">Full communal for retreat meals</span></div>
+            <div class="metric"><span>Gathering</span><span class="val">Indoor + covered outdoor porch</span></div>
+            <div class="metric"><span>Est. cost</span><span class="val">$65-85K (pole barn)</span></div>
         </div>
     </div>
 
     <div class="card" style="margin-top: 28px;">
         <div class="card-pad">
-            <h3 style="font-family: 'Playfair Display', serif; color: var(--forest); margin-bottom: 12px;">Why This Model Works</h3>
+            <h3 style="font-family: 'Playfair Display', serif; color: var(--forest); margin-bottom: 12px;">Why This Model</h3>
             <div class="detail-grid">
                 <div class="detail-block">
-                    <h4>For Your Budget</h4>
+                    <h4>Economics</h4>
                     <ul>
-                        <li>Plumbing is the expensive part — centralize it in one building</li>
-                        <li>1 septic system instead of 3 saves $20-30K</li>
-                        <li>Simple cabins are $12K vs $55K for a full tiny house</li>
-                        <li>Scale up by just adding more $12K cabins as revenue grows</li>
-                        <li>Phase 2 sleeping cabins can be built by local carpenters in weeks</li>
+                        <li>Centralizing plumbing in one building eliminates the most expensive per-unit cost</li>
+                        <li>1 septic system instead of 3+ saves $20-30K</li>
+                        <li>Simple cabins at $12K each vs $55K for a full tiny house</li>
+                        <li>Scaling up means adding more $12K cabins as revenue grows</li>
+                        <li>Local carpenters can build each cabin in 2-4 weeks</li>
                     </ul>
                 </div>
                 <div class="detail-block">
-                    <h4>For Your Guests</h4>
+                    <h4>Guest Experience</h4>
                     <ul>
-                        <li>This IS the retreat model — camps, monasteries, glamping ops all do this</li>
-                        <li>Walking 50ft to a shared bathhouse is part of the experience</li>
-                        <li>"Disconnect and simplify" is the brand — no TV, no mini-fridge</li>
-                        <li>Communal kitchen creates connection (the whole point of retreats)</li>
-                        <li>Private sleeping = quiet. Shared spaces = community. Best of both.</li>
-                        <li>Upgrade path: add "premium" full-bathroom cabins later as revenue grows</li>
+                        <li>This is the proven retreat model — camps, monasteries, and premium glamping operations all use it</li>
+                        <li>Walking to a shared bathhouse is part of the disconnect-and-simplify brand</li>
+                        <li>Communal kitchen creates the connection that retreat guests pay for</li>
+                        <li>Private sleeping for quiet, shared spaces for community</li>
+                        <li>Premium full-bathroom cabins can be added later as a high-margin upgrade</li>
                     </ul>
                 </div>
             </div>
@@ -317,30 +355,30 @@
     </div>
 </details>
 
-<!-- ═══════ PHASED BUDGET ═══════ -->
+<!-- PHASED BUDGET -->
 <details id="budget" style="max-width: 1200px; margin: 0 auto; border-bottom: 1px solid #e0dbd3;">
     <summary>Phased Budget</summary>
     <div class="section-collapse">
-    <p class="section-subtitle">$950K ceiling, phased over 2-3 years. Cabin model keeps costs down and doubles capacity.</p>
+    <p class="section-subtitle">$950K ceiling, phased over 2-3 years. Revenue begins in Phase 2.</p>
 
     <div class="card">
         <div class="card-pad">
-            <div style="font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--forest); margin-bottom: 16px;">Phase Overview (Mid Estimates)</div>
+            <div style="font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--forest); margin-bottom: 16px;">Phase Overview</div>
             <div class="phase-timeline">
                 <div class="phase-block p1">
                     <div class="plabel">Phase 1 — Months 0-6</div>
                     <div class="pcost">$395K</div>
-                    <div class="pdesc">Land + site prep + utilities + owner's tiny house. You move in.</div>
+                    <div class="pdesc">Land acquisition + site prep + utilities + owner's tiny house.</div>
                 </div>
                 <div class="phase-block p2">
                     <div class="plabel">Phase 2 — Months 6-12</div>
                     <div class="pcost">$175K</div>
-                    <div class="pdesc">4 sleeping cabins + bathhouse/kitchen. Retreat capacity: 12-16 guests. Revenue starts.</div>
+                    <div class="pdesc">4 sleeping cabins + bathhouse/kitchen. Retreat-viable at 12-16 guests. Revenue begins.</div>
                 </div>
                 <div class="phase-block p3">
                     <div class="plabel">Phase 3 — Year 2</div>
                     <div class="pcost">$115K</div>
-                    <div class="pdesc">Farm + animals + 2 more cabins + contingency buffer.</div>
+                    <div class="pdesc">Farm animals + 2 more cabins + contingency buffer.</div>
                 </div>
                 <div class="phase-block p4">
                     <div class="plabel">Phase 4 — Year 3+</div>
@@ -351,7 +389,7 @@
 
             <div class="cost-bar-label">
                 <span>$0</span>
-                <span style="color: var(--forest); font-weight: 600;">$685K all-in (Phases 1-3) &nbsp;|&nbsp; $265K remaining</span>
+                <span style="color: var(--forest); font-weight: 600;">$685K all-in through Phase 3</span>
                 <span>$950K</span>
             </div>
             <div class="cost-bar-track">
@@ -371,10 +409,9 @@
         </div>
     </div>
 
-    <!-- Phase Details -->
     <div class="grid-cards">
         <div class="mini-card">
-            <h3>Phase 1 Detail ($395K)</h3>
+            <h3>Phase 1 — $395K</h3>
             <div class="metric"><span>Land (negotiated cash)</span><span class="val">$260K</span></div>
             <div class="metric"><span>Closing + survey + perc</span><span class="val">$13K</span></div>
             <div class="metric"><span>Tree clearing + grading</span><span class="val">$25K</span></div>
@@ -387,7 +424,7 @@
             <div class="metric"><span>Owner's deck + hookup</span><span class="val">$7K</span></div>
         </div>
         <div class="mini-card">
-            <h3>Phase 2 Detail ($175K)</h3>
+            <h3>Phase 2 — $175K</h3>
             <div class="metric"><span>4 sleeping cabins (shell + finish)</span><span class="val">$48K</span></div>
             <div class="metric"><span>Cabin decks (x4)</span><span class="val">$8K</span></div>
             <div class="metric"><span>Cabin electric hookups (x4)</span><span class="val">$8K</span></div>
@@ -400,7 +437,7 @@
             <div class="metric"><span>Parking expansion</span><span class="val">$5K</span></div>
         </div>
         <div class="mini-card">
-            <h3>Phase 3 Detail ($115K)</h3>
+            <h3>Phase 3 — $115K</h3>
             <div class="metric"><span>2 more sleeping cabins</span><span class="val">$24K</span></div>
             <div class="metric"><span>Chicken coop + flock (25 hens)</span><span class="val">$3.5K</span></div>
             <div class="metric"><span>Goat shelter + fencing + 4 does</span><span class="val">$6.5K</span></div>
@@ -416,11 +453,11 @@
     </div>
 </details>
 
-<!-- ═══════ FARM PLAN ═══════ -->
+<!-- FARM PLAN -->
 <details id="farm" style="max-width: 1200px; margin: 0 auto; border-bottom: 1px solid #e0dbd3;">
     <summary>Farm & Animal Plan</summary>
     <div class="section-collapse">
-    <p class="section-subtitle">Phase 3 (Year 2). Startup ~$30K mid estimate. Pays for itself by Year 3. But the real value is what it does to your nightly rate.</p>
+    <p class="section-subtitle">Phase 3 addition. ~$30K startup that pays for itself — and unlocks premium nightly rates.</p>
 
     <div class="grid-cards">
         <div class="mini-card">
@@ -448,26 +485,26 @@
             <div class="metric"><span>Total annual revenue</span><span class="rev">$3-10K/yr</span></div>
         </div>
         <div class="mini-card featured">
-            <h3>Farm Bottom Line</h3>
+            <h3>Farm Economics</h3>
             <div class="metric"><span>Total startup</span><span class="val">~$30K</span></div>
             <div class="metric"><span>Annual operating</span><span class="val">$4-5K/yr</span></div>
             <div class="metric"><span>Annual revenue</span><span class="rev">$7-19K/yr</span></div>
             <div class="metric"><span>Net income</span><span class="rev">$3-15K/yr</span></div>
-            <div style="margin-top: 10px; font-size: 0.82rem; color: var(--text-light);">Real value: guests pay $200+/night to pet baby goats and gather eggs vs $135 for a bare cabin.</div>
+            <div style="margin-top: 10px; font-size: 0.82rem; color: var(--text-light);">The real value: guests pay $200+/night to pet baby goats and gather eggs. A bare cabin without the farm experience commands $135.</div>
         </div>
     </div>
     </div>
 </details>
 
-<!-- ═══════ PROFITABILITY ═══════ -->
-<details id="profit" style="max-width: 1200px; margin: 0 auto; border-bottom: 1px solid #e0dbd3;">
-    <summary>Can This Make Money?</summary>
+<!-- PROFITABILITY -->
+<details open id="profit" style="max-width: 1200px; margin: 0 auto; border-bottom: 1px solid #e0dbd3;">
+    <summary>Projected Returns</summary>
     <div class="section-collapse">
-    <p class="section-subtitle">With the cabin model, you're retreat-viable in Year 1. That changes everything.</p>
+    <p class="section-subtitle">Retreat-viable within Year 1. Full revenue operations by Year 2.</p>
 
     <div class="grid-cards">
         <div class="mini-card">
-            <h3>Year 1 (Months 10-12+)</h3>
+            <h3>Year 1 (Post Phase 2)</h3>
             <p style="font-size: 0.82rem; color: var(--text-light); margin-bottom: 10px;">4 cabins + bathhouse. Capacity: 12-16 guests.</p>
             <div class="metric"><span>Nightly rate (per cabin)</span><span class="val">$135/night</span></div>
             <div class="metric"><span>Occupancy (4 cabins)</span><span class="val">~45%</span></div>
@@ -492,18 +529,18 @@
             </div>
         </div>
         <div class="mini-card" style="border: 2px solid var(--gold);">
-            <h3>The Math That Matters</h3>
+            <h3>Investment Summary</h3>
             <div class="metric"><span>Total investment (Phases 1-3)</span><span class="val">$685K</span></div>
             <div class="metric"><span>Year 1 net income</span><span class="rev">~$82K</span></div>
             <div class="metric"><span>Year 2 net income</span><span class="rev">~$190K</span></div>
             <div class="metric"><span>Break-even</span><span class="rev" style="color: var(--gold);">~3 years</span></div>
             <div class="metric"><span>Land appreciation (5%/yr)</span><span class="rev">$13K+/yr</span></div>
-            <div style="margin-top: 12px; font-size: 0.82rem; color: var(--text-light);">Conservative estimates. Retreat weekends assume $500/head x 12 guests. Nightly rentals benchmarked against Brevard/Asheville Airbnb data ($135-185/night, 45-55% occupancy).</div>
+            <div style="margin-top: 12px; font-size: 0.82rem; color: var(--text-light);">Conservative estimates. Retreat weekends at $500/head x 12 guests. Nightly rentals benchmarked against Brevard/Asheville Airbnb data ($135-185/night, 45-55% occupancy).</div>
         </div>
     </div>
 
     <div style="margin-top: 28px; padding: 24px; background: white; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.06);">
-        <h3 style="font-family: 'Playfair Display', serif; color: var(--forest); margin-bottom: 14px;">Seasonality in WNC</h3>
+        <h3 style="font-family: 'Playfair Display', serif; color: var(--forest); margin-bottom: 14px;">WNC Seasonality</h3>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;">
             <div style="padding: 14px; background: #f0f7f1; border-radius: 8px; border-left: 4px solid #7cb87c;">
                 <strong style="color: var(--forest);">Spring (Mar-May)</strong><br>
@@ -514,180 +551,30 @@
                 <span style="font-size: 0.82rem; color: var(--text-light);">70-80% occ. Farm in full production. Family programs.</span>
             </div>
             <div style="padding: 14px; background: #fde8d0; border-radius: 8px; border-left: 4px solid #d4691a;">
-                <strong style="color: #8a4510;">Fall (Sep-Nov) — PEAK</strong><br>
-                <span style="font-size: 0.82rem; color: var(--text-light);">75-85% occ. Foliage is MASSIVE. Highest rates. October = #1 month.</span>
+                <strong style="color: #8a4510;">Fall (Sep-Nov) — Peak</strong><br>
+                <span style="font-size: 0.82rem; color: var(--text-light);">75-85% occ. Foliage season. Highest rates. October is #1.</span>
             </div>
             <div style="padding: 14px; background: #e8f4f8; border-radius: 8px; border-left: 4px solid var(--water);">
                 <strong style="color: #3a7089;">Winter (Dec-Feb)</strong><br>
-                <span style="font-size: 0.82rem; color: var(--text-light);">25-40% occ. Digital detox. NYE events. Mid-term rentals.</span>
+                <span style="font-size: 0.82rem; color: var(--text-light);">25-40% occ. Digital detox retreats. NYE events. Mid-term rentals.</span>
             </div>
         </div>
     </div>
     </div>
 </details>
 
-<!-- ═══════ ACTION PLAN ═══════ -->
-<details id="timeline" style="max-width: 1200px; margin: 0 auto; border-bottom: 1px solid #e0dbd3;">
-    <summary>Action Plan</summary>
-    <div class="section-collapse">
-    <p class="section-subtitle">6 weeks from couch to closing. 1 trip. Everything else is remote.</p>
-
-    <div class="timeline-card">
-        <div class="timeline-header" style="background: linear-gradient(135deg, #e8f0e8, #d5e8d4); border-left: 6px solid var(--forest);">
-            <div>
-                <div class="when" style="color: var(--forest-light);">Weeks 1-2 — From Home</div>
-                <h3>Find Your Buyer's Agent</h3>
-            </div>
-            <span class="tag tag-remote">REMOTE</span>
-        </div>
-        <div class="tl-body">
-            <div class="checklist">
-                <label><input type="checkbox"> Google "buyer's agent Transylvania County NC land" — call 2-3 agents</label>
-                <label><input type="checkbox"> Ask: "Have you sold raw mountain land over 20 acres?"</label>
-                <label><input type="checkbox"> Ask: "Familiar with Pickens Hwy / Rosman corridor?"</label>
-                <label><input type="checkbox"> Ask: "Worked with agritourism or STR properties?"</label>
-                <label><input type="checkbox"> Pick the one who asks YOU the best questions</label>
-                <label><input type="checkbox"> Sign buyer's agency agreement (costs you nothing — seller pays)</label>
-            </div>
-            <div class="tip tip-warn"><strong style="color: #8a6d1b;">Do NOT contact listing agent Dan Hodges directly.</strong> He represents the seller. Your own agent advocates for you and costs $0.</div>
-        </div>
+<!-- CLOSING CALLOUT -->
+<div class="callout">
+    <div class="callout-inner">
+        <h2>25 Acres. Waterfalls. $190K/yr Net Income.</h2>
+        <p>A property with on-site waterfalls, headwater springs, and old-growth forest — 20 minutes from Brevard, built to become a premier agritourism retreat generating strong returns within three years of acquisition.</p>
     </div>
-
-    <div class="timeline-card">
-        <div class="timeline-header" style="background: linear-gradient(135deg, #e8eef8, #dae8fc); border-left: 6px solid var(--water);">
-            <div>
-                <div class="when" style="color: var(--water);">Weeks 2-3 — From Home</div>
-                <h3>Remote Due Diligence</h3>
-            </div>
-            <span class="tag tag-remote">REMOTE</span>
-        </div>
-        <div class="tl-body">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                <div>
-                    <p style="font-size: 0.82rem; font-weight: 600; color: var(--forest); margin-bottom: 6px;">Your agent handles:</p>
-                    <div class="checklist">
-                        <label><input type="checkbox"> Full MLS history (all price changes, 614 DOM story)</label>
-                        <label><input type="checkbox"> Tax records — parcel 204260. What IS the tax value?</label>
-                        <label><input type="checkbox"> Comparable land sales (Transylvania Co, last 24 months)</label>
-                        <label><input type="checkbox"> Zoning: confirm multi-unit + agritourism allowed</label>
-                        <label><input type="checkbox"> Any liens, easements, HOA, deed restrictions?</label>
-                        <label><input type="checkbox"> Video walk-through of property (agent FaceTimes you)</label>
-                    </div>
-                </div>
-                <div>
-                    <p style="font-size: 0.82rem; font-weight: 600; color: var(--forest); margin-bottom: 6px;">You handle:</p>
-                    <div class="checklist">
-                        <label><input type="checkbox"> Call Duke Energy — service extension quote for Pickens Hwy</label>
-                        <label><input type="checkbox"> Call 2-3 well drillers — ballpark for this area</label>
-                        <label><input type="checkbox"> Call Transylvania Co planning dept — tiny house + cabin rules</label>
-                        <label><input type="checkbox"> Proof of funds letter ready (cash offer)</label>
-                        <label><input type="checkbox"> Book flights + Airbnb in Brevard for scouting trip</label>
-                    </div>
-                    <div class="tip tip-warn"><strong style="color: #8a6d1b;">Stay in Brevard</strong> — feel the town your guests will visit. Great Airbnbs there.</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="timeline-card">
-        <div class="timeline-header" style="background: linear-gradient(135deg, #fef9e7, #fff2cc); border-left: 6px solid var(--gold);">
-            <div>
-                <div class="when" style="color: #8a6d1b;">Week 3-4 — Fly to AVL</div>
-                <h3>Walk the Land (2-3 Days)</h3>
-            </div>
-            <span class="tag tag-inperson">IN PERSON</span>
-        </div>
-        <div class="tl-body">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                <div>
-                    <p style="font-size: 0.82rem; font-weight: 600; color: var(--forest); margin-bottom: 6px;">Day 1 — Walk the property</p>
-                    <div class="checklist">
-                        <label><input type="checkbox"> Walk all 25 acres with your agent</label>
-                        <label><input type="checkbox"> Find the waterfalls, springs, hilltops — photo everything</label>
-                        <label><input type="checkbox"> Bring a contractor to eyeball road + grading cost</label>
-                        <label><input type="checkbox"> Identify build sites: owner's house, 4 cabin clusters, bathhouse</label>
-                        <label><input type="checkbox"> Check cell signal + Starlink viability</label>
-                        <label><input type="checkbox"> Note the 450ft frontage — where does the entrance go?</label>
-                    </div>
-                </div>
-                <div>
-                    <p style="font-size: 0.82rem; font-weight: 600; color: var(--forest); margin-bottom: 6px;">Day 2 — Town + Decision</p>
-                    <div class="checklist">
-                        <label><input type="checkbox"> Drive to Brevard — walk Main Street, eat, feel the vibe</label>
-                        <label><input type="checkbox"> Meet well driller if possible (or phone consult)</label>
-                        <label><input type="checkbox"> Get contractor's ballpark on road + grading</label>
-                        <label><input type="checkbox"> Discuss offer strategy with your agent</label>
-                        <label><input type="checkbox"> If it feels right: submit offer before you fly home</label>
-                    </div>
-                    <div class="tip tip-good"><strong style="color: #2d8a4e;">Trust your gut.</strong> You'll know within 10 minutes of walking the land whether this is the one.</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="timeline-card">
-        <div class="timeline-header" style="background: linear-gradient(135deg, #f8e8e8, #f8cecc); border-left: 6px solid #c0392b;">
-            <div>
-                <div class="when" style="color: #c0392b;">Weeks 4-6 — From Home</div>
-                <h3>Offer + Close</h3>
-            </div>
-            <span class="tag tag-remote">REMOTE</span>
-        </div>
-        <div class="tl-body">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                <div>
-                    <p style="font-size: 0.82rem; font-weight: 600; color: var(--forest); margin-bottom: 6px;">The offer:</p>
-                    <div class="checklist">
-                        <label><input type="checkbox"> Agent drafts offer: $240-260K cash, 2-3 week close</label>
-                        <label><input type="checkbox"> Contingencies: survey, soil eval, clear title</label>
-                        <label><input type="checkbox"> Earnest money: $5-10K (held in escrow)</label>
-                        <label><input type="checkbox"> Expect counter — 614 DOM but they'll still negotiate</label>
-                        <label><input type="checkbox"> Sign everything digitally (DocuSign standard in NC)</label>
-                    </div>
-                </div>
-                <div>
-                    <p style="font-size: 0.82rem; font-weight: 600; color: var(--forest); margin-bottom: 6px;">During due diligence (2-4 weeks):</p>
-                    <div class="checklist">
-                        <label><input type="checkbox"> Agent coordinates boundary survey ($4-6K)</label>
-                        <label><input type="checkbox"> Agent coordinates soil/perc evaluation ($2-3K)</label>
-                        <label><input type="checkbox"> Title search by NC attorney (state requirement)</label>
-                        <label><input type="checkbox"> If anything scary: renegotiate or walk (keep earnest $)</label>
-                        <label><input type="checkbox"> Close — wire funds, attorney records deed. It's yours.</label>
-                    </div>
-                    <div class="tip tip-good"><strong style="color: #2d8a4e;">No second trip needed.</strong> NC allows remote closings. Sign via notary in FL.</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Summary -->
-    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 8px;">
-        <div style="text-align: center; padding: 18px; background: #e8f0e8; border-radius: 10px;">
-            <div style="font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--forest);">Wk 1-2</div>
-            <div style="font-size: 0.82rem; color: var(--text-light);">Find agent<br><strong>Remote</strong></div>
-        </div>
-        <div style="text-align: center; padding: 18px; background: #e8eef8; border-radius: 10px;">
-            <div style="font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--water);">Wk 2-3</div>
-            <div style="font-size: 0.82rem; color: var(--text-light);">Due diligence<br><strong>Remote</strong></div>
-        </div>
-        <div style="text-align: center; padding: 18px; background: #fef9e7; border-radius: 10px;">
-            <div style="font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--gold);">Wk 3-4</div>
-            <div style="font-size: 0.82rem; color: var(--text-light);">Walk the land<br><strong>Fly to AVL</strong></div>
-        </div>
-        <div style="text-align: center; padding: 18px; background: #f8e8e8; border-radius: 10px;">
-            <div style="font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: #c0392b;">Wk 4-6</div>
-            <div style="font-size: 0.82rem; color: var(--text-light);">Offer + close<br><strong>Remote</strong></div>
-        </div>
-    </div>
-    </div>
-</details>
+</div>
 
 <!-- FOOTER -->
 <div class="footer">
-    <h2 style="font-family: 'Playfair Display', serif; font-size: 1.4rem;">Contacts</h2>
-    <p><strong>Listing Agent:</strong> Dan Hodges, Mountain Real Estate Rocks — Dan@MRE.rocks</p>
-    <p style="opacity: 0.6;">(Contact through YOUR buyer's agent, not directly)</p>
-    <p style="margin-top: 16px; font-size: 0.8rem; opacity: 0.4;">Analysis compiled Feb 2026. Budget: $950K phased. Verify all details with agents and professionals.</p>
+    <p>The Retreat at Rosman &middot; 4277 Pickens Highway &middot; Transylvania County, NC</p>
+    <p>Investment analysis compiled February 2026. Budget: $950K phased. All figures are estimates — verify with professionals.</p>
 </div>
 
 <script>
