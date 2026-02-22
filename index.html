@@ -115,22 +115,103 @@
         .metric .rev { color: #2d8a4e; font-weight: 600; }
         .metric .cost { color: #c0392b; font-weight: 600; }
 
-        .phase-timeline { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 16px; }
-        .phase-block { padding: 16px; border-radius: 10px; border-left: 4px solid; }
-        .phase-block.p1 { background: #e8f0e8; border-color: var(--forest); }
-        .phase-block.p2 { background: #e8eef8; border-color: var(--water); }
-        .phase-block.p3 { background: #fef9e7; border-color: var(--gold); }
-        .phase-block.p4 { background: #f8e8e8; border-color: #c0392b; }
-        .phase-block .plabel { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 4px; }
-        .phase-block .pcost { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--forest); }
-        .phase-block .pdesc { font-size: 0.8rem; color: var(--text-light); margin-top: 4px; }
+        /* PHASE SLIDER */
+        .phase-slider-control {
+            display: flex;
+            border-radius: 100px;
+            overflow: hidden;
+            border: 2px solid var(--forest);
+            margin-bottom: 28px;
+        }
+        .phase-btn {
+            flex: 1; padding: 14px 20px; border: none; background: white;
+            font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 500;
+            color: var(--forest); cursor: pointer; transition: all 0.3s ease; text-align: center;
+        }
+        .phase-btn:not(:last-child) { border-right: 1px solid var(--sage); }
+        .phase-btn.active { background: var(--forest); color: white; }
+        .phase-btn:hover:not(.active) { background: rgba(47, 82, 51, 0.08); }
 
-        .cost-bar-track { height: 28px; background: #e0dbd3; border-radius: 14px; overflow: hidden; margin-top: 10px; }
-        .cost-bar-fill { height: 100%; border-radius: 14px; display: flex; align-items: center; justify-content: flex-end; padding-right: 12px; font-size: 0.8rem; font-weight: 600; color: white; background: linear-gradient(90deg, var(--forest), var(--forest-light)); }
-        .cost-bar-label { display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 4px; margin-top: 16px; }
-        .cost-breakdown { display: flex; gap: 20px; margin-top: 14px; flex-wrap: wrap; font-size: 0.84rem; }
-        .cost-breakdown .clabel { color: var(--text-light); }
-        .cost-breakdown .cval { font-weight: 600; }
+        .phase-progress { margin-bottom: 28px; }
+        .phase-progress-labels {
+            display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 6px;
+        }
+        .phase-progress-labels .deployed { font-weight: 600; color: var(--forest); }
+        .phase-progress-labels .total { color: var(--text-light); }
+        .phase-progress-track {
+            height: 10px; background: #e0dbd3; border-radius: 5px; overflow: hidden;
+        }
+        .phase-progress-fill {
+            height: 100%; border-radius: 5px;
+            background: linear-gradient(90deg, var(--forest), var(--forest-light));
+            transition: width 0.6s ease;
+        }
+
+        .phase-panel { display: none; }
+        .phase-panel.active {
+            display: block;
+            animation: fadeSlideIn 0.4s ease forwards;
+        }
+        @keyframes fadeSlideIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .phase-info-header {
+            display: flex; align-items: baseline; gap: 12px; margin-bottom: 8px; flex-wrap: wrap;
+        }
+        .phase-info-title {
+            font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--forest);
+        }
+        .phase-info-subtitle {
+            font-size: 0.9rem; color: var(--text-light); font-style: italic;
+        }
+
+        .phase-stats-row {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+            margin: 20px 0;
+        }
+        @media (max-width: 700px) { .phase-stats-row { grid-template-columns: 1fr; } }
+        .phase-stat-card {
+            background: var(--cream); border-radius: 10px; padding: 16px 20px; text-align: center;
+        }
+        .phase-stat-card .ps-number {
+            font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--forest);
+        }
+        .phase-stat-card .ps-label {
+            font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-light); margin-top: 4px;
+        }
+
+        .phase-description {
+            font-size: 0.92rem; color: var(--text-light); line-height: 1.7;
+            margin: 16px 0; padding: 16px 20px; background: #f8f6f1; border-radius: 10px;
+            border-left: 4px solid var(--sage);
+        }
+
+        .phase-built { margin: 20px 0; }
+        .phase-built h4 {
+            font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1.2px; color: var(--forest);
+            margin-bottom: 10px; padding-bottom: 6px; border-bottom: 2px solid var(--sage);
+        }
+        .phase-built ul { list-style: none; padding: 0; columns: 2; column-gap: 24px; }
+        @media (max-width: 700px) { .phase-built ul { columns: 1; } }
+        .phase-built li {
+            font-size: 0.86rem; color: var(--text-light); line-height: 1.7;
+            break-inside: avoid;
+        }
+        .phase-built li::before { content: '✓ '; color: var(--forest-light); font-weight: 700; }
+
+        .phase-line-items { margin: 20px 0; }
+        .phase-line-items h4 {
+            font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--forest); margin-bottom: 12px;
+        }
+
+        .site-plan-box {
+            margin-top: 24px; padding: 48px 24px;
+            background: #f0ede6; border-radius: 12px; border: 2px dashed #ccc5b9; text-align: center;
+        }
+        .site-plan-box .spt { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--text-light); margin-bottom: 8px; }
+        .site-plan-box .spd { font-size: 0.85rem; color: #999; }
 
         /* COLLAPSIBLES */
         details { margin-bottom: 0; }
@@ -159,14 +240,27 @@
         }
         .callout-inner h2 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 16px; }
         .callout-inner p { max-width: 700px; margin: 0 auto; font-size: 1rem; opacity: 0.9; line-height: 1.7; }
+        .callout-stats {
+            display: flex; justify-content: center; gap: 40px; margin-top: 28px; flex-wrap: wrap;
+        }
+        .callout-stat { text-align: center; }
+        .callout-stat .cs-number { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--sage); }
+        .callout-stat .cs-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.7; margin-top: 4px; }
 
         .footer { background: var(--forest); color: white; padding: 32px; text-align: center; }
         .footer p { opacity: 0.5; font-size: 0.8rem; margin-top: 6px; }
+
+        .disclaimer {
+            margin-top: 20px; padding: 14px 20px; background: #f8f6f1; border-radius: 8px;
+            font-size: 0.8rem; color: var(--text-light); font-style: italic; text-align: center;
+        }
 
         @media (max-width: 700px) {
             .hero h1 { font-size: 2.4rem; }
             .hero { min-height: 70vh; }
             .hero-stats { gap: 24px; }
+            .phase-slider-control { border-radius: 12px; flex-direction: column; }
+            .phase-btn:not(:last-child) { border-right: none; border-bottom: 1px solid var(--sage); }
         }
     </style>
 </head>
@@ -181,9 +275,9 @@
         <div class="tagline">25 acres of waterfalls, mountain springs, and old-growth forest at the headwaters of the French Broad River — built to become Western North Carolina's premier agritourism retreat.</div>
         <div class="hero-stats">
             <div class="hero-stat"><div class="number">25 ac</div><div class="label">Mountain Land</div></div>
-            <div class="hero-stat"><div class="number">12-16</div><div class="label">Guest Capacity</div></div>
-            <div class="hero-stat"><div class="number">$190K</div><div class="label">Year 2 Net Income</div></div>
-            <div class="hero-stat"><div class="number">~3 yr</div><div class="label">Payback Period</div></div>
+            <div class="hero-stat"><div class="number">$600K</div><div class="label">Total Investment</div></div>
+            <div class="hero-stat"><div class="number">~$162K</div><div class="label">Year 3 Net Income</div></div>
+            <div class="hero-stat"><div class="number">~4.5 yr</div><div class="label">Payback Period</div></div>
         </div>
     </div>
 </div>
@@ -355,99 +449,207 @@
     </div>
 </details>
 
-<!-- PHASED BUDGET -->
+<!-- PHASED BUDGET (Interactive Slider) -->
 <details id="budget" style="max-width: 1200px; margin: 0 auto; border-bottom: 1px solid #e0dbd3;">
     <summary>Phased Budget</summary>
     <div class="section-collapse">
-    <p class="section-subtitle">$950K ceiling, phased over 2-3 years. Revenue begins in Phase 2.</p>
+    <p class="section-subtitle">~$600K total through retreat-ready, phased over ~2 years with built-in decision gates. Revenue begins in Phase 3.</p>
 
     <div class="card">
         <div class="card-pad">
-            <div style="font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--forest); margin-bottom: 16px;">Phase Overview</div>
-            <div class="phase-timeline">
-                <div class="phase-block p1">
-                    <div class="plabel">Phase 1 — Months 0-6</div>
-                    <div class="pcost">$395K</div>
-                    <div class="pdesc">Land acquisition + site prep + utilities + owner's tiny house.</div>
+            <!-- Phase Slider Control -->
+            <div class="phase-slider-control">
+                <button class="phase-btn active" data-phase="1">Phase 1</button>
+                <button class="phase-btn" data-phase="2">Phase 2</button>
+                <button class="phase-btn" data-phase="3">Phase 3</button>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="phase-progress">
+                <div class="phase-progress-labels">
+                    <span class="deployed" id="deployed-label">~$340K deployed</span>
+                    <span class="total">of ~$600K total</span>
                 </div>
-                <div class="phase-block p2">
-                    <div class="plabel">Phase 2 — Months 6-12</div>
-                    <div class="pcost">$175K</div>
-                    <div class="pdesc">4 sleeping cabins + bathhouse/kitchen. Retreat-viable at 12-16 guests. Revenue begins.</div>
-                </div>
-                <div class="phase-block p3">
-                    <div class="plabel">Phase 3 — Year 2</div>
-                    <div class="pcost">$115K</div>
-                    <div class="pdesc">Farm animals + 2 more cabins + contingency buffer.</div>
-                </div>
-                <div class="phase-block p4">
-                    <div class="plabel">Phase 4 — Year 3+</div>
-                    <div class="pcost">$50K</div>
-                    <div class="pdesc">Trails, sauna, solar, premium cabins. Revenue-funded.</div>
+                <div class="phase-progress-track">
+                    <div class="phase-progress-fill" id="progress-fill" style="width: 57%;"></div>
                 </div>
             </div>
 
-            <div class="cost-bar-label">
-                <span>$0</span>
-                <span style="color: var(--forest); font-weight: 600;">$685K all-in through Phase 3</span>
-                <span>$950K</span>
-            </div>
-            <div class="cost-bar-track">
-                <div class="cost-bar-fill" style="width: 72%;">$685K</div>
+            <!-- Phase 1 Panel -->
+            <div class="phase-panel active" data-phase="1">
+                <div class="phase-info-header">
+                    <div class="phase-info-title">Phase 1 — Months 0-6</div>
+                    <div class="phase-info-subtitle">"Acquire &amp; Prepare"</div>
+                </div>
+
+                <div class="phase-stats-row">
+                    <div class="phase-stat-card">
+                        <div class="ps-number">~$340K</div>
+                        <div class="ps-label">Capital Deployed</div>
+                    </div>
+                    <div class="phase-stat-card">
+                        <div class="ps-number">0</div>
+                        <div class="ps-label">Guest Capacity</div>
+                    </div>
+                    <div class="phase-stat-card">
+                        <div class="ps-number">$0/yr</div>
+                        <div class="ps-label">Net Income Run Rate</div>
+                    </div>
+                </div>
+
+                <div class="phase-description">
+                    The land is secured and core infrastructure is in place. Access road, well, electricity, and internet are ready. All permits cleared. <strong>This is the decision gate:</strong> if perc tests or permits had failed, the project stops here with the land as the primary asset — limiting downside exposure.
+                </div>
+
+                <div class="phase-built">
+                    <h4>What's In Place</h4>
+                    <ul>
+                        <li>25 acres of mountain land secured</li>
+                        <li>Gravel access road from Hwy 178</li>
+                        <li>Electric service to central distribution point</li>
+                        <li>Well and pump system</li>
+                        <li>Starlink internet service</li>
+                        <li>All permits and perc tests cleared</li>
+                    </ul>
+                </div>
+
+                <div class="phase-line-items">
+                    <h4>Phase 1 Budget — ~$340K</h4>
+                    <div class="metric"><span>Land (negotiated)</span><span class="val">$275K</span></div>
+                    <div class="metric"><span>Closing + survey + perc test</span><span class="val">$13K</span></div>
+                    <div class="metric"><span>Access road (gravel)</span><span class="val">$18K</span></div>
+                    <div class="metric"><span>Electric to one central point</span><span class="val">$12K</span></div>
+                    <div class="metric"><span>Well + pump</span><span class="val">$15K</span></div>
+                    <div class="metric"><span>Starlink internet</span><span class="val">$2K</span></div>
+                    <div class="metric"><span>Permits secured</span><span class="val">$5K</span></div>
+                    <div class="metric" style="border-top: 2px solid #a0d4a0; padding-top: 10px;"><span><strong>Phase 1 Total</strong></span><span class="rev"><strong>~$340K</strong></span></div>
+                </div>
+
+                <div class="site-plan-box" id="site-plan-placeholder">
+                    <div class="spt">Site Plan View</div>
+                    <div class="spd">Interactive site plan coming soon — shows structure placement for this phase</div>
+                </div>
             </div>
 
-            <div class="cost-breakdown">
-                <div><span class="clabel">Land: </span><span class="cval">$275K</span></div>
-                <div><span class="clabel">Site + Utilities: </span><span class="cval">$136K</span></div>
-                <div><span class="clabel">Owner's Tiny House: </span><span class="cval">$65K</span></div>
-                <div><span class="clabel">4 Sleeping Cabins: </span><span class="cval">$48K</span></div>
-                <div><span class="clabel">Bathhouse/Kitchen: </span><span class="cval">$75K</span></div>
-                <div><span class="clabel">Farm + Animals: </span><span class="cval">$30K</span></div>
-                <div><span class="clabel">Permits + Pro: </span><span class="cval">$18K</span></div>
-                <div><span class="clabel">Contingency: </span><span class="cval">$45K</span></div>
-            </div>
-        </div>
-    </div>
+            <!-- Phase 2 Panel -->
+            <div class="phase-panel" data-phase="2">
+                <div class="phase-info-header">
+                    <div class="phase-info-title">Phase 2 — Months 6-12</div>
+                    <div class="phase-info-subtitle">"Make It Livable"</div>
+                </div>
 
-    <div class="grid-cards">
-        <div class="mini-card">
-            <h3>Phase 1 — $395K</h3>
-            <div class="metric"><span>Land (negotiated cash)</span><span class="val">$260K</span></div>
-            <div class="metric"><span>Closing + survey + perc</span><span class="val">$13K</span></div>
-            <div class="metric"><span>Tree clearing + grading</span><span class="val">$25K</span></div>
-            <div class="metric"><span>Access road (gravel)</span><span class="val">$28K</span></div>
-            <div class="metric"><span>Electric (Duke + on-site)</span><span class="val">$21K</span></div>
-            <div class="metric"><span>Well + pump + spring dev</span><span class="val">$27K</span></div>
-            <div class="metric"><span>Septic #1 (owner's unit)</span><span class="val">$12K</span></div>
-            <div class="metric"><span>Internet (Starlink)</span><span class="val">$2K</span></div>
-            <div class="metric"><span>Owner's tiny house (turnkey)</span><span class="val">$65K</span></div>
-            <div class="metric"><span>Owner's deck + hookup</span><span class="val">$7K</span></div>
-        </div>
-        <div class="mini-card">
-            <h3>Phase 2 — $175K</h3>
-            <div class="metric"><span>4 sleeping cabins (shell + finish)</span><span class="val">$48K</span></div>
-            <div class="metric"><span>Cabin decks (x4)</span><span class="val">$8K</span></div>
-            <div class="metric"><span>Cabin electric hookups (x4)</span><span class="val">$8K</span></div>
-            <div class="metric"><span>Bathhouse/kitchen structure</span><span class="val">$50K</span></div>
-            <div class="metric"><span>Kitchen buildout</span><span class="val">$12K</span></div>
-            <div class="metric"><span>3 showers + 2 toilets + laundry</span><span class="val">$10K</span></div>
-            <div class="metric"><span>Septic #2 (shared, all guests)</span><span class="val">$15K</span></div>
-            <div class="metric"><span>Covered outdoor area + fire pit</span><span class="val">$6K</span></div>
-            <div class="metric"><span>Permits + insurance</span><span class="val">$8K</span></div>
-            <div class="metric"><span>Parking expansion</span><span class="val">$5K</span></div>
-        </div>
-        <div class="mini-card">
-            <h3>Phase 3 — $115K</h3>
-            <div class="metric"><span>2 more sleeping cabins</span><span class="val">$24K</span></div>
-            <div class="metric"><span>Chicken coop + flock (25 hens)</span><span class="val">$3.5K</span></div>
-            <div class="metric"><span>Goat shelter + fencing + 4 does</span><span class="val">$6.5K</span></div>
-            <div class="metric"><span>Bee hives (2-4) + supplies</span><span class="val">$1.7K</span></div>
-            <div class="metric"><span>Garden beds + irrigation + fence</span><span class="val">$9K</span></div>
-            <div class="metric"><span>Fruit trees + berries</span><span class="val">$2K</span></div>
-            <div class="metric"><span>Feed shed + compost + pasture</span><span class="val">$5K</span></div>
-            <div class="metric"><span>Guardian dog + year 1 feed/vet</span><span class="val">$4K</span></div>
-            <div class="metric"><span>Signage + branding</span><span class="val">$3K</span></div>
-            <div class="metric"><span>Contingency buffer</span><span class="val">$45K</span></div>
+                <div class="phase-stats-row">
+                    <div class="phase-stat-card">
+                        <div class="ps-number">~$427K</div>
+                        <div class="ps-label">Capital Deployed</div>
+                    </div>
+                    <div class="phase-stat-card">
+                        <div class="ps-number">Informal</div>
+                        <div class="ps-label">Guest Capacity</div>
+                    </div>
+                    <div class="phase-stat-card">
+                        <div class="ps-number">Minimal</div>
+                        <div class="ps-label">Net Income Run Rate</div>
+                    </div>
+                </div>
+
+                <div class="phase-description">
+                    The owner is now living on-site year-round in a turnkey tiny house with full utilities and a private septic system. Small informal group stays become possible. The owner can begin building relationships with the local community, testing programming ideas, and planning Phase 3 construction.
+                </div>
+
+                <div class="phase-built">
+                    <h4>What's In Place (Cumulative)</h4>
+                    <ul>
+                        <li>25 acres of mountain land secured</li>
+                        <li>Gravel access road from Hwy 178</li>
+                        <li>Electric service to central distribution point</li>
+                        <li>Well and pump system</li>
+                        <li>Starlink internet service</li>
+                        <li>All permits and perc tests cleared</li>
+                        <li>Owner's tiny house (350-450 sqft, full kitchen/bath)</li>
+                        <li>Owner's deck + utility hookup</li>
+                        <li>Septic system #1 (owner's unit)</li>
+                    </ul>
+                </div>
+
+                <div class="phase-line-items">
+                    <h4>Phase 2 Budget — ~$87K</h4>
+                    <div class="metric"><span>Owner's tiny house (prefab turnkey)</span><span class="val">$65K</span></div>
+                    <div class="metric"><span>Owner's deck + utility hookup</span><span class="val">$10K</span></div>
+                    <div class="metric"><span>Septic #1 (owner's unit only)</span><span class="val">$12K</span></div>
+                    <div class="metric" style="border-top: 2px solid #a0d4a0; padding-top: 10px;"><span><strong>Phase 2 Total</strong></span><span class="rev"><strong>~$87K</strong></span></div>
+                    <div class="metric"><span><em>Cumulative through Phase 2</em></span><span class="val"><em>~$427K</em></span></div>
+                </div>
+
+                <div class="site-plan-box">
+                    <div class="spt">Site Plan View</div>
+                    <div class="spd">Interactive site plan coming soon — shows structure placement for this phase</div>
+                </div>
+            </div>
+
+            <!-- Phase 3 Panel -->
+            <div class="phase-panel" data-phase="3">
+                <div class="phase-info-header">
+                    <div class="phase-info-title">Phase 3 — Year 1-2</div>
+                    <div class="phase-info-subtitle">"Retreat-Ready"</div>
+                </div>
+
+                <div class="phase-stats-row">
+                    <div class="phase-stat-card">
+                        <div class="ps-number">~$602K</div>
+                        <div class="ps-label">Capital Deployed</div>
+                    </div>
+                    <div class="phase-stat-card">
+                        <div class="ps-number">6-9</div>
+                        <div class="ps-label">Guest Capacity</div>
+                    </div>
+                    <div class="phase-stat-card">
+                        <div class="ps-number">~$20K/yr</div>
+                        <div class="ps-label">Year 1 Net Income</div>
+                    </div>
+                </div>
+
+                <div class="phase-description">
+                    The retreat is fully operational. Three sleeping cabins, a central bathhouse and communal kitchen, and a covered fire pit gathering area are ready for guests. Revenue begins with nightly rentals and weekend retreats. Conservative Year 1 projects ~$20K net income, ramping to ~$82K in Year 2 and ~$162K by Year 3 as occupancy, rates, and programming mature.
+                </div>
+
+                <div class="phase-built">
+                    <h4>What's In Place (Cumulative)</h4>
+                    <ul>
+                        <li>25 acres of mountain land secured</li>
+                        <li>Gravel access road from Hwy 178</li>
+                        <li>Electric service to central distribution point</li>
+                        <li>Well and pump system</li>
+                        <li>Starlink internet service</li>
+                        <li>All permits and perc tests cleared</li>
+                        <li>Owner's tiny house (350-450 sqft, full kitchen/bath)</li>
+                        <li>Owner's deck + utility hookup</li>
+                        <li>Septic system #1 (owner's unit)</li>
+                        <li>Central bathhouse + communal kitchen (pole barn)</li>
+                        <li>3 sleeping cabins with decks + electric</li>
+                        <li>Shared septic system #2</li>
+                        <li>Covered fire pit gathering area</li>
+                    </ul>
+                </div>
+
+                <div class="phase-line-items">
+                    <h4>Phase 3 Budget — ~$175K</h4>
+                    <div class="metric"><span>Central bathhouse + kitchen (pole barn)</span><span class="val">$75K</span></div>
+                    <div class="metric"><span>3 sleeping cabins @ $12K each</span><span class="val">$36K</span></div>
+                    <div class="metric"><span>Cabin decks + electric hookups</span><span class="val">$20K</span></div>
+                    <div class="metric"><span>Shared septic #2</span><span class="val">$15K</span></div>
+                    <div class="metric"><span>Covered fire pit area</span><span class="val">$6K</span></div>
+                    <div class="metric"><span>Permits + insurance</span><span class="val">$8K</span></div>
+                    <div class="metric"><span>Contingency</span><span class="val">$15K</span></div>
+                    <div class="metric" style="border-top: 2px solid #a0d4a0; padding-top: 10px;"><span><strong>Phase 3 Total</strong></span><span class="rev"><strong>~$175K</strong></span></div>
+                    <div class="metric"><span><em>Cumulative through Phase 3</em></span><span class="val"><em>~$602K</em></span></div>
+                </div>
+
+                <div class="site-plan-box">
+                    <div class="spt">Site Plan View</div>
+                    <div class="spd">Interactive site plan coming soon — shows structure placement for this phase</div>
+                </div>
+            </div>
         </div>
     </div>
     </div>
@@ -500,43 +702,60 @@
 <details open id="profit" style="max-width: 1200px; margin: 0 auto; border-bottom: 1px solid #e0dbd3;">
     <summary>Projected Returns</summary>
     <div class="section-collapse">
-    <p class="section-subtitle">Retreat-viable within Year 1. Full revenue operations by Year 2.</p>
+    <p class="section-subtitle">Revenue begins post-Phase 3. Conservative projections over three years of operations.</p>
 
     <div class="grid-cards">
         <div class="mini-card">
-            <h3>Year 1 (Post Phase 2)</h3>
-            <p style="font-size: 0.82rem; color: var(--text-light); margin-bottom: 10px;">4 cabins + bathhouse. Capacity: 12-16 guests.</p>
+            <h3>Year 1 (Post Phase 3, 3 Cabins)</h3>
+            <p style="font-size: 0.82rem; color: var(--text-light); margin-bottom: 10px;">3 cabins. Capacity: 6-9 guests. Unreviewed new property.</p>
             <div class="metric"><span>Nightly rate (per cabin)</span><span class="val">$135/night</span></div>
-            <div class="metric"><span>Occupancy (4 cabins)</span><span class="val">~45%</span></div>
-            <div class="metric"><span>Nightly rental revenue</span><span class="val">$89K/yr</span></div>
-            <div class="metric"><span>Weekend retreats (8/yr)</span><span class="val">$48K/yr</span></div>
-            <div class="metric"><span>Operating expenses</span><span class="cost">-$55K/yr</span></div>
+            <div class="metric"><span>Occupancy (3 cabins)</span><span class="val">25%</span></div>
+            <div class="metric"><span>Nightly rental revenue</span><span class="val">~$37K/yr</span></div>
+            <div class="metric"><span>Weekend retreats (2-3/yr)</span><span class="val">~$12K/yr</span></div>
+            <div class="metric"><span>Operating expenses</span><span class="cost">-$29K/yr</span></div>
+            <div class="metric" style="background: #e8f5e9; margin: 8px -24px -24px; padding: 12px 24px; border-radius: 0 0 12px 12px;">
+                <span style="font-weight: 700;">Net Income</span><span class="rev" style="font-size: 1.05rem;">~$20K/yr</span>
+            </div>
+        </div>
+        <div class="mini-card">
+            <h3>Year 2 (5 Cabins, Reviews Building)</h3>
+            <p style="font-size: 0.82rem; color: var(--text-light); margin-bottom: 10px;">5 cabins. Rate increase from reviews + farm premium.</p>
+            <div class="metric"><span>Nightly rate (farm premium)</span><span class="val">$155/night</span></div>
+            <div class="metric"><span>Occupancy (5 cabins)</span><span class="val">38%</span></div>
+            <div class="metric"><span>Nightly rental revenue</span><span class="val">~$109K/yr</span></div>
+            <div class="metric"><span>Weekend retreats (6/yr)</span><span class="val">~$30K/yr</span></div>
+            <div class="metric"><span>Farm income</span><span class="val">~$5K/yr</span></div>
+            <div class="metric"><span>Operating expenses</span><span class="cost">-$62K/yr</span></div>
             <div class="metric" style="background: #e8f5e9; margin: 8px -24px -24px; padding: 12px 24px; border-radius: 0 0 12px 12px;">
                 <span style="font-weight: 700;">Net Income</span><span class="rev" style="font-size: 1.05rem;">~$82K/yr</span>
             </div>
         </div>
         <div class="mini-card">
-            <h3>Year 2 (+ Farm + 2 Cabins)</h3>
-            <p style="font-size: 0.82rem; color: var(--text-light); margin-bottom: 10px;">6 cabins + farm. Premium pricing. Capacity: 16-20.</p>
-            <div class="metric"><span>Nightly rate (farm premium)</span><span class="val">$185/night</span></div>
-            <div class="metric"><span>Occupancy (6 cabins)</span><span class="val">~50%</span></div>
-            <div class="metric"><span>Nightly rental revenue</span><span class="val">$203K/yr</span></div>
-            <div class="metric"><span>Retreats (12/yr)</span><span class="val">$72K/yr</span></div>
-            <div class="metric"><span>Farm income</span><span class="val">$10K/yr</span></div>
-            <div class="metric"><span>Operating expenses</span><span class="cost">-$95K/yr</span></div>
+            <h3>Year 3 (6 Cabins, Full Farm, Mature)</h3>
+            <p style="font-size: 0.82rem; color: var(--text-light); margin-bottom: 10px;">6 cabins + full farm. Mature operations, strong review base.</p>
+            <div class="metric"><span>Nightly rate</span><span class="val">$175/night</span></div>
+            <div class="metric"><span>Occupancy (6 cabins)</span><span class="val">50%</span></div>
+            <div class="metric"><span>Nightly rental revenue</span><span class="val">~$192K/yr</span></div>
+            <div class="metric"><span>Weekend retreats (10/yr)</span><span class="val">~$50K/yr</span></div>
+            <div class="metric"><span>Farm income</span><span class="val">~$10K/yr</span></div>
+            <div class="metric"><span>Operating expenses</span><span class="cost">-$90K/yr</span></div>
             <div class="metric" style="background: #e8f5e9; margin: 8px -24px -24px; padding: 12px 24px; border-radius: 0 0 12px 12px;">
-                <span style="font-weight: 700;">Net Income</span><span class="rev" style="font-size: 1.05rem;">~$190K/yr</span>
+                <span style="font-weight: 700;">Net Income</span><span class="rev" style="font-size: 1.05rem;">~$162K/yr</span>
             </div>
         </div>
         <div class="mini-card" style="border: 2px solid var(--gold);">
             <h3>Investment Summary</h3>
-            <div class="metric"><span>Total investment (Phases 1-3)</span><span class="val">$685K</span></div>
-            <div class="metric"><span>Year 1 net income</span><span class="rev">~$82K</span></div>
-            <div class="metric"><span>Year 2 net income</span><span class="rev">~$190K</span></div>
-            <div class="metric"><span>Break-even</span><span class="rev" style="color: var(--gold);">~3 years</span></div>
-            <div class="metric"><span>Land appreciation (5%/yr)</span><span class="rev">$13K+/yr</span></div>
-            <div style="margin-top: 12px; font-size: 0.82rem; color: var(--text-light);">Conservative estimates. Retreat weekends at $500/head x 12 guests. Nightly rentals benchmarked against Brevard/Asheville Airbnb data ($135-185/night, 45-55% occupancy).</div>
+            <div class="metric"><span>Total investment</span><span class="val">~$600K</span></div>
+            <div class="metric"><span>Year 1 net income</span><span class="rev">~$20K</span></div>
+            <div class="metric"><span>Year 2 net income</span><span class="rev">~$82K</span></div>
+            <div class="metric"><span>Year 3 net income</span><span class="rev">~$162K</span></div>
+            <div class="metric"><span>Payback period</span><span class="rev" style="color: var(--gold);">~4.5 years</span></div>
+            <div class="metric"><span>Land appreciation (5%/yr)</span><span class="rev">$14K+/yr</span></div>
         </div>
+    </div>
+
+    <div class="disclaimer">
+        Projections reflect conservative base case. New property occupancy benchmarked at 25% Year 1, ramping to 50% by Year 3.
     </div>
 
     <div style="margin-top: 28px; padding: 24px; background: white; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.06);">
@@ -566,18 +785,24 @@
 <!-- CLOSING CALLOUT -->
 <div class="callout">
     <div class="callout-inner">
-        <h2>25 Acres. Waterfalls. $190K/yr Net Income.</h2>
-        <p>A property with on-site waterfalls, headwater springs, and old-growth forest — 20 minutes from Brevard, built to become a premier agritourism retreat generating strong returns within three years of acquisition.</p>
+        <h2>25 Acres. Waterfalls. ~$162K Year 3 Net Income.</h2>
+        <p>A property with on-site waterfalls, headwater springs, and old-growth forest — 20 minutes from Brevard. ~$600K total investment with built-in decision gates, targeting ~$162K annual net income by Year 3.</p>
+        <div class="callout-stats">
+            <div class="callout-stat"><div class="cs-number">$600K</div><div class="cs-label">Total Investment</div></div>
+            <div class="callout-stat"><div class="cs-number">~$162K</div><div class="cs-label">Year 3 Net Income</div></div>
+            <div class="callout-stat"><div class="cs-number">~4.5 yr</div><div class="cs-label">Payback Period</div></div>
+        </div>
     </div>
 </div>
 
 <!-- FOOTER -->
 <div class="footer">
     <p>The Retreat at Rosman &middot; 4277 Pickens Highway &middot; Transylvania County, NC</p>
-    <p>Investment analysis compiled February 2026. Budget: $950K phased. All figures are estimates — verify with professionals.</p>
+    <p>Investment analysis compiled February 2026. Budget: ~$600K phased. All figures are estimates — verify with professionals.</p>
 </div>
 
 <script>
+// Nav smooth scroll
 document.querySelectorAll('.nav-pill').forEach(pill => {
     pill.addEventListener('click', e => {
         e.preventDefault();
@@ -589,6 +814,46 @@ document.querySelectorAll('.nav-pill').forEach(pill => {
         }
     });
 });
+
+// Phase Slider
+(function() {
+    const buttons = document.querySelectorAll('.phase-btn');
+    const panels = document.querySelectorAll('.phase-panel');
+    const progressFill = document.getElementById('progress-fill');
+    const deployedLabel = document.getElementById('deployed-label');
+
+    const phaseData = {
+        '1': { width: '57%', label: '~$340K deployed' },
+        '2': { width: '71%', label: '~$427K deployed' },
+        '3': { width: '100%', label: '~$602K deployed' }
+    };
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const phase = btn.getAttribute('data-phase');
+
+            // Update button states
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // Update panels
+            panels.forEach(p => p.classList.remove('active'));
+            const targetPanel = document.querySelector('.phase-panel[data-phase="' + phase + '"]');
+            if (targetPanel) {
+                // Trigger reflow for animation restart
+                void targetPanel.offsetWidth;
+                targetPanel.classList.add('active');
+            }
+
+            // Update progress bar
+            const data = phaseData[phase];
+            if (data) {
+                progressFill.style.width = data.width;
+                deployedLabel.textContent = data.label;
+            }
+        });
+    });
+})();
 </script>
 </body>
 </html>
