@@ -59,13 +59,12 @@
         .gallery-heading { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--forest); text-align: center; margin-bottom: 8px; }
         .gallery-sub { text-align: center; color: var(--text-light); margin-bottom: 32px; font-size: 0.95rem; }
         .gallery-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: auto auto;
+            display: grid; grid-template-columns: repeat(3, 1fr);
             gap: 12px;
         }
-        .gallery-grid .g-item { border-radius: 12px; overflow: hidden; position: relative; }
+        .gallery-grid .g-item { border-radius: 12px; overflow: hidden; position: relative; aspect-ratio: 4/3; }
         .gallery-grid .g-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s; }
         .gallery-grid .g-item:hover img { transform: scale(1.03); }
-        .gallery-grid .g-item.tall { grid-row: span 2; }
         .gallery-grid .g-item .g-caption {
             position: absolute; bottom: 0; left: 0; right: 0; padding: 12px 16px;
             background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: white;
@@ -73,7 +72,6 @@
         }
         @media (max-width: 700px) {
             .gallery-grid { grid-template-columns: 1fr 1fr; }
-            .gallery-grid .g-item.tall { grid-row: span 1; }
         }
 
         /* SECTIONS */
@@ -261,6 +259,8 @@
             .hero-stats { gap: 24px; }
             .phase-slider-control { border-radius: 12px; flex-direction: column; }
             .phase-btn:not(:last-child) { border-right: none; border-bottom: 1px solid var(--sage); }
+            .gated-grid { grid-template-columns: 1fr !important; }
+            .spec-grid { grid-template-columns: 1fr 1fr !important; }
         }
     </style>
 </head>
@@ -296,7 +296,7 @@
     <div class="gallery-heading">The Land</div>
     <p class="gallery-sub">Waterfalls, headwater streams, hardwood canopy, and panoramic mountain views — all on one 25-acre parcel.</p>
     <div class="gallery-grid">
-        <div class="g-item tall">
+        <div class="g-item">
             <img src="photos/pickens_1.jpg" alt="Waterfall on the property">
             <div class="g-caption">On-site waterfall</div>
         </div>
@@ -329,17 +329,45 @@
     <div class="section-collapse">
     <p class="section-subtitle">MLS #4141540 &middot; 25 acres on the French Broad River headwaters &middot; Rosman, NC</p>
 
-    <div class="card">
-        <div class="stats-grid">
-            <div class="stat-cell"><div class="stat-label">Acreage</div><div class="stat-value good">25 acres</div></div>
-            <div class="stat-cell"><div class="stat-label">Water Features</div><div class="stat-value highlight">Waterfalls + River Source + Springs</div></div>
-            <div class="stat-cell"><div class="stat-label">Brevard</div><div class="stat-value">20 min</div></div>
-            <div class="stat-cell"><div class="stat-label">AVL Airport</div><div class="stat-value">50 min</div></div>
-            <div class="stat-cell"><div class="stat-label">Road Frontage</div><div class="stat-value">450+ ft on Hwy 178</div></div>
-            <div class="stat-cell"><div class="stat-label">Neighbors</div><div class="stat-value">2 gated communities</div></div>
-            <div class="stat-cell"><div class="stat-label">Terrain</div><div class="stat-value">Two hilltops + river valley</div></div>
-            <div class="stat-cell"><div class="stat-label">Rainfall</div><div class="stat-value highlight">80-120+ in/yr</div></div>
+    <div class="spec-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 28px;">
+        <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.05);">
+            <div style="font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1.4px; color: var(--text-light); margin-bottom: 8px;">Acreage</div>
+            <div style="font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--forest);">25 ac</div>
         </div>
+        <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.05);">
+            <div style="font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1.4px; color: var(--text-light); margin-bottom: 8px;">Water Features</div>
+            <div style="font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--water);">Waterfalls + Springs</div>
+        </div>
+        <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.05);">
+            <div style="font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1.4px; color: var(--text-light); margin-bottom: 8px;">Brevard</div>
+            <div style="font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--forest);">20 min</div>
+        </div>
+        <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.05);">
+            <div style="font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1.4px; color: var(--text-light); margin-bottom: 8px;">AVL Airport</div>
+            <div style="font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--forest);">50 min</div>
+        </div>
+        <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.05);">
+            <div style="font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1.4px; color: var(--text-light); margin-bottom: 8px;">Road Frontage</div>
+            <div style="font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--forest);">450+ ft</div>
+            <div style="font-size: 0.75rem; color: var(--text-light); margin-top: 2px;">on Hwy 178</div>
+        </div>
+        <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.05);">
+            <div style="font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1.4px; color: var(--text-light); margin-bottom: 8px;">Neighbors</div>
+            <div style="font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--forest);">2 Gated</div>
+            <div style="font-size: 0.75rem; color: var(--text-light); margin-top: 2px;">communities</div>
+        </div>
+        <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.05);">
+            <div style="font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1.4px; color: var(--text-light); margin-bottom: 8px;">Terrain</div>
+            <div style="font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--forest);">2 Hilltops</div>
+            <div style="font-size: 0.75rem; color: var(--text-light); margin-top: 2px;">+ river valley</div>
+        </div>
+        <div style="background: white; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.05);">
+            <div style="font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1.4px; color: var(--text-light); margin-bottom: 8px;">Annual Rainfall</div>
+            <div style="font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--water);">80-120+ in</div>
+        </div>
+    </div>
+
+    <div class="card">
         <div class="card-pad">
             <div class="detail-grid">
                 <div class="detail-block">
@@ -349,7 +377,6 @@
                         <li>Multiple waterfalls on property — the kind of feature that sells itself to guests</li>
                         <li>Natural spring-fed water supply with Transylvania County's 80-120+ in rainfall/yr</li>
                         <li>Two hilltops with long-range mountain views for premium cabin sites</li>
-                        <li>Bordered by Indian Camp Mountain and Line Runner Ridge (both gated)</li>
                         <li>Brevard is artsy, progressive, LGBTQ+-friendly — 20 minutes away</li>
                         <li>450+ ft of highway frontage provides easy access and visibility</li>
                     </ul>
@@ -368,6 +395,31 @@
             </div>
         </div>
     </div>
+
+    <!-- Gated Community Corridor Callout -->
+    <div style="background: linear-gradient(135deg, #f0f7f1 0%, #e8f0e4 100%); border-radius: 16px; padding: 32px; margin-top: 28px; border: 2px solid var(--sage);">
+        <h3 style="font-family: 'Playfair Display', serif; color: var(--forest); font-size: 1.2rem; margin-bottom: 6px;">Bordered by Indian Camp Mountain & Line Runner Ridge</h3>
+        <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 20px;">Both are gated communities — and that matters more than it sounds.</p>
+        <div class="gated-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+            <div style="background: white; border-radius: 10px; padding: 18px 20px;">
+                <div style="font-weight: 600; font-size: 0.82rem; color: var(--forest); margin-bottom: 6px;">Affluent, Like-Minded Neighbors</div>
+                <div style="font-size: 0.84rem; color: var(--text-light); line-height: 1.6;">Gated mountain communities attract nature-loving residents who value privacy and land stewardship — the kind of neighbors who protect, not compete with, a retreat operation.</div>
+            </div>
+            <div style="background: white; border-radius: 10px; padding: 18px 20px;">
+                <div style="font-weight: 600; font-size: 0.82rem; color: var(--forest); margin-bottom: 6px;">Proven Infrastructure Corridor</div>
+                <div style="font-size: 0.84rem; color: var(--text-light); line-height: 1.6;">Roads, electric, grading, and utility access are already established in the immediate area. The infrastructure investment has been made around you.</div>
+            </div>
+            <div style="background: white; border-radius: 10px; padding: 18px 20px;">
+                <div style="font-weight: 600; font-size: 0.82rem; color: var(--forest); margin-bottom: 6px;">Demand Already Validated</div>
+                <div style="font-size: 0.84rem; color: var(--text-light); line-height: 1.6;">People paid premium prices to gate themselves into this exact corridor. The demand for high-end outdoor living on this stretch of Hwy 178 is not speculative — it's proven.</div>
+            </div>
+            <div style="background: white; border-radius: 10px; padding: 18px 20px;">
+                <div style="font-weight: 600; font-size: 0.82rem; color: var(--forest); margin-bottom: 6px;">Protected from Encroachment</div>
+                <div style="font-size: 0.84rem; color: var(--text-light); line-height: 1.6;">Gated communities on both sides means no commercial or industrial development will creep in. The character of the area is locked in by your neighbors' investment.</div>
+            </div>
+        </div>
+    </div>
+
     </div>
 </details>
 
