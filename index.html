@@ -253,6 +253,9 @@
             font-size: 0.8rem; color: var(--text-light); font-style: italic; text-align: center;
         }
 
+        @media (max-width: 900px) {
+            .grid-cards { grid-template-columns: repeat(2, 1fr) !important; }
+        }
         @media (max-width: 700px) {
             .hero h1 { font-size: 2.4rem; }
             .hero { min-height: 70vh; }
@@ -261,6 +264,7 @@
             .phase-btn:not(:last-child) { border-right: none; border-bottom: 1px solid var(--sage); }
             .gated-grid { grid-template-columns: 1fr !important; }
             .spec-grid { grid-template-columns: 1fr 1fr !important; }
+            .grid-cards { grid-template-columns: 1fr !important; }
         }
     </style>
 </head>
@@ -285,9 +289,8 @@
 <!-- NAV -->
 <div class="nav-bar">
     <a class="nav-pill" href="#property">The Property</a>
-    <a class="nav-pill" href="#accommodation">Sleeping Plan</a>
+    <a class="nav-pill" href="#structures">Structures</a>
     <a class="nav-pill" href="#budget">Budget</a>
-    <a class="nav-pill" href="#farm">Farm Plan</a>
     <a class="nav-pill" href="#profit">Returns</a>
 </div>
 
@@ -431,64 +434,122 @@
     </div>
 </details>
 
-<!-- ACCOMMODATION MODEL -->
-<details open id="accommodation" style="max-width: 1200px; margin: 0 auto; border-bottom: 1px solid #e0dbd3;">
-    <summary>Sleeping Plan</summary>
+<!-- STRUCTURES -->
+<details open id="structures" style="max-width: 1200px; margin: 0 auto; border-bottom: 1px solid #e0dbd3;">
+    <summary>Structures</summary>
     <div class="section-collapse">
-    <p class="section-subtitle">Centralized plumbing in one bathhouse. Simple sleeping cabins. Maximum capacity at minimum cost.</p>
+    <p class="section-subtitle">Every physical structure on the property — from owner's suites to chicken coops. Centralized plumbing keeps costs low. The farm is the brand.</p>
 
-    <div class="card">
+    <div class="grid-cards" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="mini-card" style="border-left: 4px solid var(--gold);">
+            <div style="font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1.4px; color: var(--gold); margin-bottom: 8px; font-weight: 600;">Owner &middot; Phase 2</div>
+            <h3>Primary Owner's Suite</h3>
+            <div class="metric"><span>Size</span><span class="val">450-550 sqft</span></div>
+            <div class="metric"><span>Type</span><span class="val">On-foundation or premium prefab</span></div>
+            <div class="metric"><span>Features</span><span class="val">Full kitchen, bath, bedroom, living</span></div>
+            <div class="metric"><span>Septic</span><span class="val">Shared owner's system</span></div>
+            <div class="metric"><span>Est. cost</span><span class="val">$75-85K</span></div>
+        </div>
+
+        <div class="mini-card" style="border-left: 4px solid var(--gold);">
+            <div style="font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1.4px; color: var(--gold); margin-bottom: 8px; font-weight: 600;">Owner &middot; Phase 2</div>
+            <h3>Secondary Owner's Suite</h3>
+            <div class="metric"><span>Size</span><span class="val">280-350 sqft</span></div>
+            <div class="metric"><span>Type</span><span class="val">Compact prefab or cottage</span></div>
+            <div class="metric"><span>Features</span><span class="val">Kitchenette, bath, sleeping/living</span></div>
+            <div class="metric"><span>Septic</span><span class="val">Shared owner's system</span></div>
+            <div class="metric"><span>Est. cost</span><span class="val">$50-60K</span></div>
+        </div>
+
+        <div class="mini-card" style="border-left: 4px solid var(--forest-light);">
+            <div style="font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1.4px; color: var(--forest-light); margin-bottom: 8px; font-weight: 600;">Guest &middot; Phase 3</div>
+            <h3>Sleeping Cabins (x4-6)</h3>
+            <div class="metric"><span>Size</span><span class="val">~192 sqft each (12x16)</span></div>
+            <div class="metric"><span>Type</span><span class="val">Insulated shell, no plumbing</span></div>
+            <div class="metric"><span>Features</span><span class="val">Queen or bunks, heat, porch</span></div>
+            <div class="metric"><span>Sleeps</span><span class="val">2-4 per cabin</span></div>
+            <div class="metric"><span>Est. cost each</span><span class="val">$8-15K</span></div>
+        </div>
+
+        <div class="mini-card" style="border-left: 4px solid var(--water);">
+            <div style="font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1.4px; color: var(--water); margin-bottom: 8px; font-weight: 600;">Communal &middot; Phase 3</div>
+            <h3>Central Bathhouse + Kitchen</h3>
+            <div class="metric"><span>Size</span><span class="val">800-1000 sqft pole barn</span></div>
+            <div class="metric"><span>Bathrooms</span><span class="val">3 showers + 2 toilets</span></div>
+            <div class="metric"><span>Kitchen</span><span class="val">Full communal for retreat meals</span></div>
+            <div class="metric"><span>Gathering</span><span class="val">Indoor + covered outdoor porch</span></div>
+            <div class="metric"><span>Est. cost</span><span class="val">$65-85K</span></div>
+        </div>
+
+        <div class="mini-card" style="border-left: 4px solid var(--forest-light);">
+            <div style="font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1.4px; color: var(--forest-light); margin-bottom: 8px; font-weight: 600;">Communal &middot; Phase 3</div>
+            <h3>Covered Fire Pit Area</h3>
+            <div class="metric"><span>Type</span><span class="val">Covered outdoor gathering</span></div>
+            <div class="metric"><span>Features</span><span class="val">Stone fire pit, seating, roof</span></div>
+            <div class="metric"><span>Use</span><span class="val">Evening programs, s'mores, stargazing</span></div>
+            <div class="metric"><span>Est. cost</span><span class="val">$6K</span></div>
+        </div>
+
+        <div class="mini-card" style="border-left: 4px solid var(--sage);">
+            <div style="font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1.4px; color: var(--forest); margin-bottom: 8px; font-weight: 600;">Farm &middot; Phase 3</div>
+            <h3>Chicken Coop + Run</h3>
+            <div class="metric"><span>Flock</span><span class="val">25 heritage hens</span></div>
+            <div class="metric"><span>Startup</span><span class="val">$3,375</span></div>
+            <div class="metric"><span>Annual cost</span><span class="val">$1,100/yr</span></div>
+            <div class="metric"><span>Revenue</span><span class="rev">$3-6K/yr (eggs)</span></div>
+            <div class="metric"><span>Guest experience</span><span class="rev">Morning egg gathering</span></div>
+        </div>
+
+        <div class="mini-card" style="border-left: 4px solid var(--sage);">
+            <div style="font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1.4px; color: var(--forest); margin-bottom: 8px; font-weight: 600;">Farm &middot; Phase 3</div>
+            <h3>Goat Shelter + Pasture</h3>
+            <div class="metric"><span>Herd</span><span class="val">4-6 Nigerian Dwarf does</span></div>
+            <div class="metric"><span>Startup</span><span class="val">$6,700</span></div>
+            <div class="metric"><span>Annual cost</span><span class="val">$2,200/yr</span></div>
+            <div class="metric"><span>Revenue</span><span class="rev">$1-3K/yr (milk/soap)</span></div>
+            <div class="metric"><span>Guest experience</span><span class="rev">Baby goats + goat yoga</span></div>
+        </div>
+
+        <div class="mini-card" style="border-left: 4px solid var(--sage);">
+            <div style="font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1.4px; color: var(--forest); margin-bottom: 8px; font-weight: 600;">Farm &middot; Phase 3</div>
+            <h3>Bee Hives, Garden & Orchard</h3>
+            <div class="metric"><span>Bees</span><span class="val">2-4 hives + gear — $1,700</span></div>
+            <div class="metric"><span>Garden</span><span class="val">16 raised beds + irrigation — $6,500</span></div>
+            <div class="metric"><span>Orchard</span><span class="val">Fruit trees + berries — $1,600</span></div>
+            <div class="metric"><span>Fencing</span><span class="val">Deer fencing — $2,500</span></div>
+            <div class="metric"><span>Revenue</span><span class="rev">$3-10K/yr combined</span></div>
+        </div>
+
+        <div class="mini-card featured" style="border-left: 4px solid var(--forest);">
+            <div style="font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1.4px; color: var(--forest); margin-bottom: 8px; font-weight: 600;">Septic &middot; Phases 2-3</div>
+            <h3>Septic Systems (x2)</h3>
+            <div class="metric"><span>System #1</span><span class="val">Owner's suites (Phase 2)</span></div>
+            <div class="metric"><span>System #2</span><span class="val">Bathhouse + cabins (Phase 3)</span></div>
+            <div class="metric"><span>Est. cost each</span><span class="val">$15K</span></div>
+            <div class="metric"><span>Total</span><span class="val">$30K</span></div>
+            <div style="margin-top: 10px; font-size: 0.82rem; color: var(--text-light);">Centralizing plumbing in the bathhouse eliminates per-cabin septic — saves $20-30K vs individual systems.</div>
+        </div>
+    </div>
+
+    <!-- Cost Summary -->
+    <div class="card" style="margin-top: 28px;">
         <div class="card-pad">
-            <h3 style="font-family: 'Playfair Display', serif; color: var(--forest); margin-bottom: 12px;">Cabins + Bathhouse Model</h3>
-            <div class="metric"><span>Primary owner's suite (full kit)</span><span class="val">$80K</span></div>
-            <div class="metric"><span>Secondary owner's suite (compact)</span><span class="val">$55K</span></div>
+            <h3 style="font-family: 'Playfair Display', serif; color: var(--forest); margin-bottom: 12px;">Total Build Cost</h3>
+            <div class="metric"><span>Primary owner's suite</span><span class="val">$80K</span></div>
+            <div class="metric"><span>Secondary owner's suite</span><span class="val">$55K</span></div>
             <div class="metric"><span>4 sleeping cabins @ $12K</span><span class="val">$48K</span></div>
-            <div class="metric"><span>1 central bathhouse/kitchen</span><span class="val">$75K</span></div>
-            <div class="metric"><span>1 shared septic system (guests)</span><span class="val">$15K</span></div>
-            <div class="metric"><span>Electric to 7 structures</span><span class="val">$22K</span></div>
-            <div class="metric" style="border-top: 2px solid #a0d4a0; padding-top: 10px;"><span><strong>Total accommodation</strong></span><span class="rev"><strong>~$295K</strong></span></div>
+            <div class="metric"><span>Central bathhouse + kitchen</span><span class="val">$75K</span></div>
+            <div class="metric"><span>Covered fire pit area</span><span class="val">$6K</span></div>
+            <div class="metric"><span>Farm structures (coop, shelter, hives, beds, orchard, fencing)</span><span class="val">$30K</span></div>
+            <div class="metric"><span>Septic systems (x2)</span><span class="val">$30K</span></div>
+            <div class="metric"><span>Electric to all structures</span><span class="val">$22K</span></div>
+            <div class="metric"><span>Decks + utility hookups</span><span class="val">$15K</span></div>
+            <div class="metric" style="border-top: 2px solid #a0d4a0; padding-top: 10px;"><span><strong>Total structures</strong></span><span class="rev"><strong>~$361K</strong></span></div>
             <div class="metric"><span>Max guest capacity</span><span class="rev">12-16 people</span></div>
         </div>
     </div>
 
-    <div class="grid-cards" style="margin-top: 32px; grid-template-columns: 1fr 1fr;">
-        <div class="mini-card" style="border: 2px solid var(--gold);">
-            <h3 style="color: var(--gold);">Primary Owner's Suite</h3>
-            <div class="metric"><span>Type</span><span class="val">On-foundation or premium prefab</span></div>
-            <div class="metric"><span>Size</span><span class="val">450-550 sqft</span></div>
-            <div class="metric"><span>Features</span><span class="val">Full kitchen, bathroom, bedroom, living area</span></div>
-            <div class="metric"><span>Septic</span><span class="val">Shared owner's septic system</span></div>
-            <div class="metric"><span>Est. cost</span><span class="val">$75-85K turnkey</span></div>
-        </div>
-
-        <div class="mini-card" style="border: 2px solid var(--gold); border-style: dashed;">
-            <h3 style="color: var(--gold);">Secondary Owner's Suite</h3>
-            <div class="metric"><span>Type</span><span class="val">Compact prefab or cottage build</span></div>
-            <div class="metric"><span>Size</span><span class="val">280-350 sqft</span></div>
-            <div class="metric"><span>Features</span><span class="val">Kitchenette, bathroom, sleeping/living area</span></div>
-            <div class="metric"><span>Septic</span><span class="val">Shared owner's septic system</span></div>
-            <div class="metric"><span>Est. cost</span><span class="val">$50-60K turnkey</span></div>
-        </div>
-
-        <div class="mini-card" style="border: 2px solid var(--forest-light);">
-            <h3>Sleeping Cabins (x4-6)</h3>
-            <div class="metric"><span>Type</span><span class="val">Insulated shell, no plumbing</span></div>
-            <div class="metric"><span>Size</span><span class="val">~192 sqft each (12x16)</span></div>
-            <div class="metric"><span>Features</span><span class="val">Queen or bunks, heat, porch</span></div>
-            <div class="metric"><span>Est. cost each</span><span class="val">$8-15K</span></div>
-            <div class="metric"><span>Sleeps</span><span class="val">2-4 per cabin</span></div>
-        </div>
-
-        <div class="mini-card" style="border: 2px solid var(--water);">
-            <h3>Central Bathhouse + Kitchen</h3>
-            <div class="metric"><span>Size</span><span class="val">800-1000 sqft</span></div>
-            <div class="metric"><span>Bathrooms</span><span class="val">3 showers + 2 toilets</span></div>
-            <div class="metric"><span>Kitchen</span><span class="val">Full communal for retreat meals</span></div>
-            <div class="metric"><span>Gathering</span><span class="val">Indoor + covered outdoor porch</span></div>
-            <div class="metric"><span>Est. cost</span><span class="val">$65-85K (pole barn)</span></div>
-        </div>
-    </div>
-
+    <!-- Why This Model -->
     <div class="card" style="margin-top: 28px;">
         <div class="card-pad">
             <h3 style="font-family: 'Playfair Display', serif; color: var(--forest); margin-bottom: 12px;">Why This Model</h3>
@@ -497,20 +558,20 @@
                     <h4>Economics</h4>
                     <ul>
                         <li>Centralizing plumbing in one building eliminates the most expensive per-unit cost</li>
-                        <li>1 septic system instead of 3+ saves $20-30K</li>
-                        <li>Simple cabins at $12K each vs $55-80K for an owner's suite</li>
+                        <li>1 guest septic system instead of 3+ saves $20-30K</li>
+                        <li>Simple cabins at $12K each vs $55-80K for a full suite</li>
                         <li>Scaling up means adding more $12K cabins as revenue grows</li>
                         <li>Local carpenters can build each cabin in 2-4 weeks</li>
                     </ul>
                 </div>
                 <div class="detail-block">
-                    <h4>Guest Experience</h4>
+                    <h4>The Farm Is the Brand</h4>
                     <ul>
-                        <li>This is the proven retreat model — camps, monasteries, and premium glamping operations all use it</li>
-                        <li>Walking to a shared bathhouse is part of the disconnect-and-simplify brand</li>
-                        <li>Communal kitchen creates the connection that retreat guests pay for</li>
-                        <li>Private sleeping for quiet, shared spaces for community</li>
-                        <li>Premium full-bathroom cabins can be added later as a high-margin upgrade</li>
+                        <li>Guests pay $200+/night to pet baby goats and gather eggs — a bare cabin commands $135</li>
+                        <li>Farm structures are cheap ($30K) but unlock a 50% rate premium</li>
+                        <li>Morning egg gathering, goat yoga, garden-to-table meals — the structures enable the experience</li>
+                        <li>~$7-19K/yr direct farm revenue on top of the nightly rate uplift</li>
+                        <li>Farm startup breaks even in ~3-5 years on direct revenue alone</li>
                     </ul>
                 </div>
             </div>
@@ -727,49 +788,6 @@
                     <div class="spd">Interactive site plan coming soon — shows structure placement for this phase</div>
                 </div>
             </div>
-        </div>
-    </div>
-    </div>
-</details>
-
-<!-- FARM PLAN -->
-<details id="farm" style="max-width: 1200px; margin: 0 auto; border-bottom: 1px solid #e0dbd3;">
-    <summary>Farm & Animal Plan</summary>
-    <div class="section-collapse">
-    <p class="section-subtitle">Included in Phase 3. ~$30K startup that pays for itself — and unlocks premium nightly rates.</p>
-
-    <div class="grid-cards">
-        <div class="mini-card">
-            <h3>Chickens (25 Heritage Hens)</h3>
-            <div class="metric"><span>Coop + run</span><span class="val">$3,000</span></div>
-            <div class="metric"><span>Flock (point-of-lay)</span><span class="val">$375</span></div>
-            <div class="metric"><span>Annual cost</span><span class="val">$1,100/yr</span></div>
-            <div class="metric"><span>Egg revenue</span><span class="rev">$3-6K/yr</span></div>
-            <div class="metric"><span>Guest value</span><span class="rev">Morning egg gathering</span></div>
-        </div>
-        <div class="mini-card">
-            <h3>Goats (4-6 Nigerian Dwarfs)</h3>
-            <div class="metric"><span>Shelter + fencing</span><span class="val">$5,500</span></div>
-            <div class="metric"><span>Does (4-6)</span><span class="val">$1,200</span></div>
-            <div class="metric"><span>Annual cost</span><span class="val">$2,200/yr</span></div>
-            <div class="metric"><span>Revenue</span><span class="rev">$1-3K/yr (milk/soap)</span></div>
-            <div class="metric"><span>Guest value</span><span class="rev">Baby goats + goat yoga</span></div>
-        </div>
-        <div class="mini-card">
-            <h3>Bees, Garden & Orchard</h3>
-            <div class="metric"><span>2-4 hives + gear</span><span class="val">$1,700</span></div>
-            <div class="metric"><span>16 raised beds + irrigation</span><span class="val">$6,500</span></div>
-            <div class="metric"><span>Fruit trees + berries</span><span class="val">$1,600</span></div>
-            <div class="metric"><span>Deer fencing</span><span class="val">$2,500</span></div>
-            <div class="metric"><span>Total annual revenue</span><span class="rev">$3-10K/yr</span></div>
-        </div>
-        <div class="mini-card featured">
-            <h3>Farm Economics</h3>
-            <div class="metric"><span>Total startup</span><span class="val">~$30K</span></div>
-            <div class="metric"><span>Annual operating</span><span class="val">$4-5K/yr</span></div>
-            <div class="metric"><span>Annual revenue</span><span class="rev">$7-19K/yr</span></div>
-            <div class="metric"><span>Net income</span><span class="rev">$3-15K/yr</span></div>
-            <div style="margin-top: 10px; font-size: 0.82rem; color: var(--text-light);">The real value: guests pay $200+/night to pet baby goats and gather eggs. A bare cabin without the farm experience commands $135.</div>
         </div>
     </div>
     </div>
